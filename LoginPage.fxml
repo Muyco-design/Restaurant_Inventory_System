@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF9E1;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.LoginController">
+   <children>
+      <VBox fx:id="TitleGr" layoutX="204.0" layoutY="84.0" prefHeight="58.0" prefWidth="193.0">
+         <children>
+            <Label fx:id="WelcomeBackTo" alignment="CENTER" prefHeight="21.0" prefWidth="193.0" text="Welcome Back to" textAlignment="CENTER">
+               <font>
+                  <Font name="Harrington" size="15.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="LamontaMenu" alignment="CENTER" prefHeight="18.0" prefWidth="218.0" text=" LamontaMenu" textAlignment="CENTER" textFill="#45622a">
+               <font>
+                  <Font name="HoboStd" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
