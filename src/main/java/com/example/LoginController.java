@@ -19,9 +19,7 @@ import javafx.scene.image.ImageView;
 public class LoginController {
 
 
-    
-    
-    @FXML
+     @FXML
     private ImageView BGmenu;
 
     @FXML
@@ -29,6 +27,20 @@ public class LoginController {
 
     @FXML
     private Button LoginButton;
+
+    @FXML
+    private void handleLogin(ActionEvent event) throws IOException {
+        String user = username.getText();
+        String pass = Password.getText();
+
+        if(user.equals("admin") && pass.equals("1234")) {
+            Parent menuRoot = FXMLLoader.load(getClass().getResource("/com/example/Menu.fxml"));
+            Stage stage = (Stage) username.getScene().getWindow();
+            stage.setScene(new Scene(menuRoot));
+        } else {
+            System.out.println("Invalid username or password!");
+        }
+    }
 
     @FXML
     private PasswordField Password;
@@ -45,17 +57,4 @@ public class LoginController {
     @FXML
     private TextField username;
     
-    @FXML
-    private void handleLogin(ActionEvent event) throws IOException {
-        String user = username.getText();
-        String pass = Password.getText();
-
-        if(user.equals("admin") && pass.equals("1234")) {
-            Parent menuRoot = FXMLLoader.load(getClass().getResource("Menu.fxml"));
-            Stage stage = (Stage) username.getScene().getWindow();
-            stage.setScene(new Scene(menuRoot));
-        } else {
-            System.out.println("Invalid username or password!");
-        }
-    }
 }
