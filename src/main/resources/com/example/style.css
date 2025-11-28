@@ -1,11 +1,10 @@
 /* Bar color for first series */
 .default-color0.chart-bar {
-    -fx-bar-fill: linear-gradient(to top, #4A6E34, #6FAE5F);
-}
+-fx-bar-fill: #4A6E34;}
 
 /* Legend */
 .chart-legend {
-    -fx-background-color: yellow;
+    -fx-background-color: rgb(255, 255, 255);
     -fx-text-fill: #333333;
 }
 
@@ -21,3 +20,29 @@
     -fx-background-color: #FFFFFF;
     -fx-border-color: transparent;
 }
+
+/* dashboard style */
+
+.analytics-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12px;
+    -fx-padding: 25px;
+}
+
+.analytics-value {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3D5C28; /* dark green */
+}
+
+.analytics-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3D5C28;
+}
+
+.analytics-sub {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7A8B72; /* grey-green */
+}
+
