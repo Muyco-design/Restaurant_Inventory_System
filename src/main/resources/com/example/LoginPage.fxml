@@ -17,7 +17,7 @@
             <Image url="@../../Images/4aa91283-e481-4ea6-a76a-989e50d269f1.png" />
          </image>
       </ImageView>
-      <VBox layoutX="532.0" layoutY="436.0" prefHeight="456.0" prefWidth="370.0">
+      <VBox layoutX="532.0" layoutY="436.0" prefHeight="231.0" prefWidth="370.0">
          <children>
             <TextField fx:id="username" prefHeight="45.0" prefWidth="356.0" promptText="Username" styleClass="login-input">
                <opaqueInsets>
@@ -36,7 +36,7 @@
                <font>
                   <Font size="21.0" />
                </font></PasswordField>
-            <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#handleLogin" onDragEntered="#handleLogin" prefHeight="45.0" prefWidth="388.0" styleClass="login-btn" text="Log In" textFill="#f3e7b4">
+            <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#handleLogin" prefHeight="45.0" prefWidth="388.0" styleClass="login-btn" text="Log In" textFill="#f3e7b4">
                <VBox.margin>
                   <Insets bottom="7.0" />
                </VBox.margin>
