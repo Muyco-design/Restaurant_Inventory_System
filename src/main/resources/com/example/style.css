@@ -46,3 +46,112 @@
     -fx-text-fill: #7A8B72; /* grey-green */
 }
 
+/* For the Dashboard Labels (Top Selling/Least Selling) */
+.meal-card {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 12px 18px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-border-color: #e4e4e4;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
+}
+/* ====== TITLE (Top Selling Meals) ====== */
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2E5A20; /* green */
+}
+
+/* ====== FOOD ITEM ROW ====== */
+.food-item {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10px;
+    -fx-border-color: #e4e4e4;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px 14px;
+}
+
+/* Highlighted top card (light yellow box) */
+.food-item-top {
+    -fx-background-color: #FFF6D8;
+    -fx-border-color: #E6D89B;
+}
+
+/* Highlighted least card (light red box) */
+.food-item-least {
+    -fx-background-color: #FFDADA;
+    -fx-border-color: #E6A1A1;
+}
+
+/* ====== TEXT LABELS ====== */
+.food-name {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.food-orders {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6F6F6F;
+}
+
+.food-earnings {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2E5A20; /* green */
+    -fx-alignment: center-right;
+}
+
+/* ====== OUT OF STOCK IMAGE CIRCLE ====== */
+.image-circle {
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-fit-width: 45;
+    -fx-fit-height: 45;
+}
+
+.search_Bar-Border{
+
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+}
+
+/* Sidebar buttons */
+.button {
+    -fx-background-color: transparent; /* no background */
+    -fx-text-fill: white; /* text color */
+    -fx-font-size: 14px;
+    -fx-border-width: 2px; 
+    -fx-border-color: transparent; /* default border */
+    -fx-border-radius: 5px;
+    -fx-padding: 8 15 8 15;
+}
+
+/* Hover effect */
+.button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2); /* subtle highlight */
+}
+
+/* Selected button */
+.button:selected, .button:selected:hover {
+    -fx-border-color: white; /* white border for selected */
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* faint background */
+}
+
+/* Log Out button style */
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 8 15 8 15;
+}
+
+.logout-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
