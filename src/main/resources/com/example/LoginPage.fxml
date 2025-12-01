@@ -45,7 +45,7 @@
                <font>
                   <Font size="24.0" />
                </font></Button>
-            <Button fx:id="SignupButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="377.0" styleClass="login-btn" text="Sign Up" textFill="#f3e7b4">
+            <Button fx:id="SignupButton" mnemonicParsing="false" onMouseEntered="#handleSignupHovIn" onMouseExited="#handleSignupHovOut" prefHeight="44.0" prefWidth="377.0" styleClass="login-btn" text="Sign Up" textFill="#f3e7b4">
                <font>
                   <Font size="24.0" />
                </font></Button>
