@@ -3,7 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,8 +15,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: FFF9E1;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="Inventory" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: FFF9E1;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.InventoryController">
    <children>
+      <ImageView fitHeight="83.0" fitWidth="1051.0" layoutX="386.0" layoutY="22.0">
+         <image>
+            <Image url="@../../Images/fe1f1b70-02f2-4c2a-afe5-36bbbbaaf9e6.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="869.0" fitWidth="1038.0" layoutX="382.0" layoutY="175.0">
+         <image>
+            <Image url="@../../Images/024c1d0d-e22a-4735-809c-2a4ae5d84c39.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="1028.0" fitWidth="352.0" layoutX="-10.0">
          <image>
             <Image url="@../../Images/3d99618a-02ad-4cd8-8773-d2438457f48b.png" />
@@ -25,9 +37,14 @@
             <Image url="@../../Images/e062fe50-0b4c-414f-92fa-9d11e4a5ee48.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="972.0" layoutX="407.0" layoutY="204.0">
+         <image>
+            <Image url="@../../Images/eed5c352-aad3-4e78-a066-ad121aec2451.png" />
+         </image>
+      </ImageView>
       <HBox layoutX="374.0" layoutY="12.0" prefHeight="81.0" prefWidth="1040.0">
          <children>
-            <TextField fx:id="SearchBarMenu" prefHeight="32.0" prefWidth="386.0" promptText="Search">
+            <TextField fx:id="SearchBarMenu" prefHeight="32.0" prefWidth="386.0" promptText="Search" styleClass="search_Bar-Border">
                <font>
                   <Font size="18.0" />
                </font>
@@ -37,61 +54,421 @@
             <Insets left="20.0" top="25.0" />
          </padding>
       </HBox>
+      <PieChart layoutX="1104.0" layoutY="387.0" prefHeight="285.24" prefWidth="285.0" />
       <VBox layoutX="74.0" layoutY="294.0" prefHeight="256.0" prefWidth="242.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="329.0" style="-fx-background-color: #4A6E34;" text="Dashboard" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Gill Sans MT" size="24.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="401.0" text="Menu" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Gill Sans MT" size="24.0" />
-               </font>
-               <padding>
-                  <Insets right="50.0" />
-               </padding>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="415.0" text="Inventory" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets right="15.0" />
-               </padding>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+               <children>
+                  <ImageView fx:id="Dashboardicon">
+                     <image>
+                        <Image url="@../../Images/1a7ed121-f7f1-43bc-99ce-9547df94323f.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="DashboardButton" mnemonicParsing="false" onAction="#handleDashboard" prefHeight="82.0" prefWidth="329.0" style="-fx-background-color: transparent;" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView>
+                     <image>
+                        <Image url="@../../Images/2b3c4ec1-e034-4e49-9449-3ddb76ffa3af.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="MenuButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="82.0" prefWidth="401.0" style="-fx-background-color: transparent;" text="Menu" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="10.0" right="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4A6E34;" styleClass="search_Bar-Border">
+               <children>
+                  <ImageView>
+                     <image>
+                        <Image url="@../../Images/0c4598cf-b32c-4c8f-8bad-7f4a24d2617b.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="InventoryButton" mnemonicParsing="false" prefHeight="97.0" prefWidth="202.0" style="-fx-background-color: transparent;" text="Inventory" textFill="WHITE">
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding>
+                     <font>
+                        <Font name="Gill Sans MT" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <ImageView layoutX="21.0" layoutY="311.0">
+      <Button fx:id="goBack" alignment="CENTER" layoutX="62.0" layoutY="938.0" mnemonicParsing="false" onAction="#goBack" prefHeight="66.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Button>
+      <ImageView layoutX="41.0" layoutY="951.0">
          <image>
-            <Image url="@../../Images/1a7ed121-f7f1-43bc-99ce-9547df94323f.png" />
+            <Image url="@../../Images/df8f59d0-c3a8-4bd6-ba8f-f60556cc9939.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="21.0" layoutY="402.0">
+      <ScrollPane layoutX="402.0" layoutY="248.0" prefHeight="826.0" prefWidth="1011.0" style="-fx-background-color: transparent;">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1076.0" prefWidth="999.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox layoutX="1.0" layoutY="3.0" prefHeight="1074.0" prefWidth="1048.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="78.0" prefWidth="998.0" style="-fx-border-color: grey;">
+                                 <left>
+                                    <HBox prefHeight="100.0" prefWidth="176.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="72.0" style="-fx-background-color: transparent;" text="-">
+                                             <font>
+                                                <Font size="34.0" />
+                                             </font>
+                                          </Button>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="79.0" text="0">
+                                             <font>
+                                                <Font size="27.0" />
+                                             </font>
+                                          </Label>
+                                          <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="64.0" style="-fx-background-color: transparent;" text="+">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </left>
+                                 <center>
+                                    <ImageView fitHeight="84.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../../Images/sisig.png" />
+                                       </image>
+                                    </ImageView>
+                                 </center>
+                                 <right>
+                                    <HBox prefHeight="98.0" prefWidth="539.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <VBox prefHeight="98.0" prefWidth="157.0">
+                                             <children>
+                                                <Label prefHeight="39.0" prefWidth="155.0" text="Food Name" textFill="#2f4e1c">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="27.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Description">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="98.0" prefWidth="350.0" text="0">
+                                             <HBox.margin>
+                                                <Insets right="50.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="29.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </right>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="100.0" prefWidth="996.0" style="-fx-border-color: grey;">
+                                 <left>
+                                    <HBox prefHeight="100.0" prefWidth="176.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="72.0" style="-fx-background-color: transparent;" text="-">
+                                             <font>
+                                                <Font size="34.0" />
+                                             </font>
+                                          </Button>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="79.0" text="0">
+                                             <font>
+                                                <Font size="27.0" />
+                                             </font>
+                                          </Label>
+                                          <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="64.0" style="-fx-background-color: transparent;" text="+">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </left>
+                                 <center>
+                                    <ImageView fitHeight="84.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../../Images/sisig.png" />
+                                       </image>
+                                    </ImageView>
+                                 </center>
+                                 <right>
+                                    <HBox prefHeight="98.0" prefWidth="539.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <VBox prefHeight="98.0" prefWidth="157.0">
+                                             <children>
+                                                <Label prefHeight="39.0" prefWidth="155.0" text="Food Name" textFill="#2f4e1c">
+                                                   <font>
+                                                      <Font name="System Bold" size="27.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Description">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="98.0" prefWidth="350.0" text="0">
+                                             <HBox.margin>
+                                                <Insets right="50.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="29.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </right>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="100.0" prefWidth="1002.0" style="-fx-border-color: grey;">
+                                 <left>
+                                    <HBox prefHeight="100.0" prefWidth="176.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="72.0" style="-fx-background-color: transparent;" text="-">
+                                             <font>
+                                                <Font size="34.0" />
+                                             </font>
+                                          </Button>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="79.0" text="0">
+                                             <font>
+                                                <Font size="27.0" />
+                                             </font>
+                                          </Label>
+                                          <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="64.0" style="-fx-background-color: transparent;" text="+">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </left>
+                                 <center>
+                                    <ImageView fitHeight="84.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../../Images/sisig.png" />
+                                       </image>
+                                    </ImageView>
+                                 </center>
+                                 <right>
+                                    <HBox prefHeight="98.0" prefWidth="539.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <VBox prefHeight="98.0" prefWidth="157.0">
+                                             <children>
+                                                <Label prefHeight="39.0" prefWidth="155.0" text="Food Name" textFill="#2f4e1c">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="27.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Description">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="98.0" prefWidth="350.0" text="0">
+                                             <HBox.margin>
+                                                <Insets right="50.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="29.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </right>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="100.0" prefWidth="1000.0" style="-fx-border-color: grey;">
+                                 <left>
+                                    <HBox prefHeight="100.0" prefWidth="176.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="72.0" style="-fx-background-color: transparent;" text="-">
+                                             <font>
+                                                <Font size="34.0" />
+                                             </font>
+                                          </Button>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="79.0" text="0">
+                                             <font>
+                                                <Font size="27.0" />
+                                             </font>
+                                          </Label>
+                                          <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="64.0" style="-fx-background-color: transparent;" text="+">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </left>
+                                 <center>
+                                    <ImageView fitHeight="84.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../../Images/sisig.png" />
+                                       </image>
+                                    </ImageView>
+                                 </center>
+                                 <right>
+                                    <HBox prefHeight="98.0" prefWidth="539.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <VBox prefHeight="98.0" prefWidth="157.0">
+                                             <children>
+                                                <Label prefHeight="39.0" prefWidth="155.0" text="Food Name" textFill="#2f4e1c">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="27.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Description">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="98.0" prefWidth="350.0" text="0">
+                                             <HBox.margin>
+                                                <Insets right="50.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="29.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </right>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="100.0" prefWidth="996.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <ImageView fitHeight="51.0" fitWidth="200.0" layoutX="1220.0" layoutY="37.0">
          <image>
-            <Image url="@../../Images/2b3c4ec1-e034-4e49-9449-3ddb76ffa3af.png" />
+            <Image url="@../../Images/dbf0efd8-7d37-4e9a-a1a0-36addc764db3.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="21.0" layoutY="494.0">
+      <VBox layoutX="1304.0" layoutY="42.0" prefHeight="38.0" prefWidth="100.0">
+         <children>
+            <Label styleClass="food-name" text="Username" />
+            <Label styleClass="food-earnings" text="Role" />
+         </children>
+      </VBox>
+      <ImageView fx:id="ProfilePicture" fitHeight="47.0" fitWidth="51.0" layoutX="1243.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView layoutX="410.0" layoutY="124.0">
          <image>
-            <Image url="@../../Images/0c4598cf-b32c-4c8f-8bad-7f4a24d2617b.png" />
+            <Image url="@../../Images/Inventory%20Title.png" />
          </image>
       </ImageView>
-      <BorderPane layoutX="374.0" layoutY="175.0" prefHeight="162.0" prefWidth="1040.0" style="-fx-background-color: FFFFFF;" />
-      <ButtonBar layoutX="1229.0" layoutY="120.0" prefHeight="40.0" prefWidth="178.0" style="-fx-background-color: FFFFFF;">
-         <buttons>
-            <Button mnemonicParsing="false" text="Button" />
-         </buttons>
-      </ButtonBar>
-      <PieChart layoutX="1104.0" layoutY="387.0" prefHeight="285.24" prefWidth="285.0" />
+      <CheckBox fx:id="VegInvButton" alignment="CENTER" layoutX="1221.0" layoutY="124.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="172.0" style="-fx-background-color: white;" text="Vegetarian" textFill="#2f4e1c">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </CheckBox>
+      <HBox layoutX="580.0" layoutY="122.0" prefHeight="38.0" prefWidth="582.0">
+         <children>
+            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="All" BorderPane.alignment="CENTER" />
+               </center>
+               <left>
+                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Breakfast" BorderPane.alignment="CENTER" />
+               </center>
+               <left>
+                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Lunch" BorderPane.alignment="CENTER" />
+               </center>
+               <left>
+                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Dinner" BorderPane.alignment="CENTER" />
+               </center>
+               <left>
+                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
