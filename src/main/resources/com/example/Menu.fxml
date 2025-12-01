@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -21,6 +22,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #FFF9E1;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Menucontroller">
    <children>
+      <ImageView fitHeight="83.0" fitWidth="1051.0" layoutX="376.0" layoutY="12.0">
+         <image>
+            <Image url="@../../Images/fe1f1b70-02f2-4c2a-afe5-36bbbbaaf9e6.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="1028.0" fitWidth="352.0" layoutX="-10.0">
          <image>
             <Image url="@../../Images/3d99618a-02ad-4cd8-8773-d2438457f48b.png" />
@@ -31,9 +37,9 @@
             <Image url="@../../Images/e062fe50-0b4c-414f-92fa-9d11e4a5ee48.png" />
          </image>
       </ImageView>
-      <HBox layoutX="374.0" layoutY="12.0" prefHeight="81.0" prefWidth="1040.0">
+      <HBox layoutX="374.0" layoutY="12.0" prefHeight="81.0" prefWidth="431.0">
          <children>
-            <TextField fx:id="SearchBarMenu" prefHeight="32.0" prefWidth="386.0" promptText="Search">
+            <TextField fx:id="SearchBarMenu" prefHeight="32.0" prefWidth="386.0" promptText="Search" styleClass="search_Bar-Border">
                <font>
                   <Font size="18.0" />
                </font>
@@ -45,54 +51,74 @@
       </HBox>
       <VBox layoutX="74.0" layoutY="294.0" prefHeight="256.0" prefWidth="242.0">
          <children>
-            <Button fx:id="DashboardButton" mnemonicParsing="false" prefHeight="82.0" prefWidth="329.0" style="-fx-background-color: #4A6E34;" text="Dashboard" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Gill Sans MT" size="24.0" />
-               </font>
-            </Button>
-            <Button fx:id="MenuButton" mnemonicParsing="false" prefHeight="82.0" prefWidth="401.0" style="-fx-background-color: #4A6E34;" text="Menu" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Gill Sans MT" size="24.0" />
-               </font>
-               <padding>
-                  <Insets right="50.0" />
-               </padding>
-            </Button>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4A6E34;">
+            <HBox fx:id="DashboardHbox" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4A6E34;" styleClass="search_Bar-Border">
                <children>
-                  <ImageView fitWidth="40.0">
+                  <ImageView fx:id="Dashboardicon">
+                     <image>
+                        <Image url="@../../Images/1a7ed121-f7f1-43bc-99ce-9547df94323f.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="DashboardButton" mnemonicParsing="false" prefHeight="82.0" prefWidth="329.0" style="-fx-background-color: transparent;" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox fx:id="MenuHBox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView>
+                     <image>
+                        <Image url="@../../Images/2b3c4ec1-e034-4e49-9449-3ddb76ffa3af.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="MenuButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleMenuButton" prefHeight="82.0" prefWidth="401.0" style="-fx-background-color: transparent;" text="Menu" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="10.0" right="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox fx:id="InventoryHbox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView>
                      <image>
                         <Image url="@../../Images/0c4598cf-b32c-4c8f-8bad-7f4a24d2617b.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
                   </ImageView>
-                  <Button fx:id="InventoryButton" mnemonicParsing="false" prefHeight="82.0" prefWidth="415.0" style="-fx-background-color: #4A6E34;" text="Inventory" textFill="WHITE">
+                  <Button fx:id="InventoryButton" mnemonicParsing="false" onAction="#handleInventoryButton" prefHeight="97.0" prefWidth="202.0" style="-fx-background-color: transparent;" text="Inventory" textFill="WHITE">
                      <padding>
                         <Insets right="15.0" />
                      </padding>
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Gill Sans MT" size="24.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="50.0" />
+                     </HBox.margin>
                   </Button>
                </children>
             </HBox>
          </children>
       </VBox>
-      <ImageView layoutX="21.0" layoutY="311.0">
-         <image>
-            <Image url="@../../Images/1a7ed121-f7f1-43bc-99ce-9547df94323f.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="21.0" layoutY="402.0">
-         <image>
-            <Image url="@../../Images/2b3c4ec1-e034-4e49-9449-3ddb76ffa3af.png" />
-         </image>
-      </ImageView>
       <BorderPane layoutX="374.0" layoutY="175.0" prefHeight="162.0" prefWidth="1040.0" style="-fx-background-color: FFFFFF;" styleClass="analytics-card">
          <center>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="60.0" BorderPane.alignment="CENTER">
@@ -121,7 +147,7 @@
                </children>
             </HBox>
          </center></BorderPane>
-      <BarChart fx:id="BarChart" alternativeColumnFillVisible="true" layoutX="374.0" layoutY="378.0" prefHeight="322.0" prefWidth="1007.0">
+      <BarChart fx:id="BarChart" alternativeColumnFillVisible="true" layoutX="374.0" layoutY="378.0" onInputMethodTextChanged="#initialize" prefHeight="322.0" prefWidth="1007.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -129,79 +155,108 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <BorderPane layoutX="378.0" layoutY="708.0" prefHeight="298.0" prefWidth="367.0" style="-fx-background-color: FFFFFF;">
-         <center>
-            <VBox prefHeight="298.0" prefWidth="369.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox prefHeight="104.0" prefWidth="361.0">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Label text="Label" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="102.0" prefWidth="374.0">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Label text="Label" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="100.0" prefWidth="374.0">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Label text="Label" />
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-         </center></BorderPane>
-      <BorderPane layoutX="751.0" layoutY="706.0" prefHeight="298.0" prefWidth="343.0" style="-fx-background-color: FFFFFF;">
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox prefHeight="102.0" prefWidth="374.0">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Label text="Label" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="105.0" prefWidth="374.0">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Label text="Label" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="102.0" prefWidth="374.0">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Label text="Label" />
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-         </center></BorderPane>
-      <BorderPane layoutX="1066.0" layoutY="708.0" prefHeight="298.0" prefWidth="374.0" style="-fx-background-color: FFFFFF;" />
-      <ImageView layoutX="21.0" layoutY="951.0">
+      <Button fx:id="goBack" alignment="CENTER" layoutX="62.0" layoutY="938.0" mnemonicParsing="false" onAction="#goBack" prefHeight="66.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Button>
+      <ImageView layoutX="41.0" layoutY="951.0">
          <image>
             <Image url="@../../Images/df8f59d0-c3a8-4bd6-ba8f-f60556cc9939.png" />
          </image>
       </ImageView>
-      <Button fx:id="goBack" alignment="BOTTOM_LEFT" layoutX="79.0" layoutY="936.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="233.0" style="-fx-background-color: #4A6E34;" text="Log Out" textFill="WHITE">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Button>
       <ImageView layoutX="402.0" layoutY="125.0">
          <image>
             <Image url="@../../Images/0513b4c2-fa45-4706-b3c5-80bfc5d75b94.png" />
          </image>
       </ImageView>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+      <ImageView fitHeight="298.0" fitWidth="338.0" layoutX="374.0" layoutY="708.0">
+         <image>
+            <Image url="@../../Images/d0b6bd59-f7fe-43e3-97f9-914f826f82c3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="298.0" fitWidth="338.0" layoutX="720.0" layoutY="706.0">
+         <image>
+            <Image url="@../../Images/d0b6bd59-f7fe-43e3-97f9-914f826f82c3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="298.0" fitWidth="338.0" layoutX="1066.0" layoutY="708.0">
+         <image>
+            <Image url="@../../Images/d0b6bd59-f7fe-43e3-97f9-914f826f82c3.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="394.0" layoutY="767.0" prefHeight="224.0" prefWidth="301.0">
+         <children>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="TSO1" styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
+                  <Label fx:id="TopSellingOne" styleClass="food-name" text="food Name" />
+                  <Label fx:id="TSE1" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="140.0" styleClass="food-earnings" text="+ 0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+               <styleClass>
+                  <String fx:value="meal-card" />
+                  <String fx:value="food-item-top" />
+               </styleClass>
+            </GridPane>
+            <GridPane styleClass="meal-card">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="TopSellingTwo" styleClass="food-name" text="Food Name" />
+                  <Label fx:id="TSO2" styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
+                  <Label fx:id="TSE2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="150.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <GridPane styleClass="meal-card">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="TopSellingThree" styleClass="food-name" text="Food Name" />
+                  <Label fx:id="TSO3" styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
+                  <Label fx:id="TSE3" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="152.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <Text fill="#274617" layoutX="406.0" layoutY="749.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Top Selling Meals">
+         <font>
+            <Font name="Franklin Gothic Book" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="#274617" layoutX="749.0" layoutY="749.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Least Selling Meals">
+         <font>
+            <Font name="Franklin Gothic Book" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="#274617" layoutX="1098.0" layoutY="749.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Out Of Stock">
+         <font>
+            <Font name="Franklin Gothic Book" size="23.0" />
+         </font>
+      </Text>
+      <VBox layoutX="739.0" layoutY="767.0" prefHeight="224.0" prefWidth="301.0">
          <children>
             <GridPane>
                <columnConstraints>
@@ -213,16 +268,140 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
+               <children>
+                  <Label fx:id="LeastSellingOne" styleClass="food-name" text="food Name" />
+                  <Label prefHeight="38.0" prefWidth="48.0" styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="144.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+               <styleClass>
+                  <String fx:value="meal-card" />
+                  <String fx:value="food-item-least" />
+               </styleClass>
+            </GridPane>
+            <GridPane styleClass="meal-card">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="LeastSellingTwo" styleClass="food-name" text="food Name" />
+                  <Label styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="171.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <GridPane styleClass="meal-card">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="LeastSellingThree" styleClass="food-name" text="food Name" />
+                  <Label styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="225.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
             </GridPane>
          </children>
       </VBox>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="104.0" prefWidth="361.0">
+      <VBox layoutX="1084.0" layoutY="768.0" prefHeight="224.0" prefWidth="301.0">
          <children>
-            <Label text="Label" />
-            <Label text="Label" />
-            <Label text="Label" />
+            <GridPane prefWidth="293.0" styleClass="meal-card">
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label styleClass="food-name" text="food Name" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="19.0" prefWidth="109.0" styleClass="food-orders" text="Quantity: 0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ImageView fitHeight="38.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" styleClass="image-circle" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../Images/Extra-Creamy-Halo-Halo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+            <GridPane styleClass="meal-card">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label styleClass="food-name" text="food Name">
+                     <GridPane.margin>
+                        <Insets left="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="19.0" prefWidth="115.0" styleClass="food-orders" text="Quantity: 0" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="35.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+            <GridPane styleClass="meal-card">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="19.0" prefWidth="127.0" styleClass="food-orders" text="Quantity: 0" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="food-name" text="food Name">
+                     <GridPane.margin>
+                        <Insets left="35.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
          </children>
       </VBox>
-      <Label layoutX="10.0" layoutY="10.0" text="Label" />
+      <ImageView fitHeight="51.0" fitWidth="200.0" layoutX="1210.0" layoutY="27.0">
+         <image>
+            <Image url="@../../Images/dbf0efd8-7d37-4e9a-a1a0-36addc764db3.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="1294.0" layoutY="32.0" prefHeight="38.0" prefWidth="100.0">
+         <children>
+            <Label styleClass="food-name" text="Username" />
+            <Label styleClass="food-earnings" text="Role" />
+         </children>
+      </VBox>
+      <ImageView fx:id="ProfilePicture" fitHeight="47.0" fitWidth="51.0" layoutX="1233.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
