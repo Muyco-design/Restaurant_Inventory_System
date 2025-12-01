@@ -32,10 +32,14 @@
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+    -fx-padding: 10px 20px; /* Button padding */
+    -fx-effect: dropshadow(gaussian, rgba(9, 40, 14, 0.5), 5, 0, 0, 0);
+    
 }
 
 .login-btn:hover {
     -fx-background-color: #3E6D29; /* lighter green on hover */
+    
 }
 
 .signup-btn {
