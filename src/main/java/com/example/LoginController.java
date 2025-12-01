@@ -69,11 +69,7 @@ public class LoginController {
                 stage.setScene(new Scene(root));
             } 
             else {
-                alertMessage.setText("Invalid username or password!");
-                FadeTransition fadeoutInval = new FadeTransition(Duration.seconds(2), alertMessage);
-                fadeoutInval.setFromValue(1.0);
-                fadeoutInval.setToValue(0.0);
-                fadeoutInval.play();
+                showAlert("Invalid username or password!");
             }
 
         } catch (IOException e) {
@@ -86,6 +82,14 @@ public class LoginController {
 
         System.out.println("Signup button clicked! (Not implemented yet)");
         
+    }
+
+    private void showAlert(String message) {
+        alertMessage.setText(message);
+        FadeTransition ft = new FadeTransition(Duration.millis(3000), alertMessage);
+        ft.setFromValue(1.0);
+        ft.setToValue(0.0);
+        ft.play();
     }
 
     @FXML
@@ -104,6 +108,22 @@ public class LoginController {
         st.setToY(1.0); // Scale back to original Y
         st.play();
 
+    }
+
+    @FXML
+    void handleSignupHovIn(MouseEvent event) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(200), SignupButton);
+        st.setToX(1.1); // Scale X to 110%
+        st.setToY(1.1); // Scale Y to 110%
+        st.play();
+    }
+
+    @FXML
+    void handleSignupHovOut(MouseEvent event) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(200), SignupButton);
+        st.setToX(1.0); // Scale back to original X
+        st.setToY(1.0); // Scale back to original Y
+        st.play();
     }
 
 }
