@@ -44,42 +44,6 @@
          </padding>
       </HBox>
       <PieChart layoutX="1104.0" layoutY="387.0" prefHeight="285.24" prefWidth="285.0" />
-      <HBox layoutX="386.0" layoutY="128.0" prefHeight="45.0" prefWidth="713.0">
-         <children>
-            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-               <center>
-                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Button" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-               <center>
-                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Button" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-               <center>
-                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Button" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-               <center>
-                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Button" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-         </children>
-      </HBox>
       <VBox layoutX="74.0" layoutY="294.0" prefHeight="256.0" prefWidth="242.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -177,5 +141,53 @@
             <Font size="22.0" />
          </font>
       </CheckBox>
+      <HBox layoutX="492.0" layoutY="131.0" prefHeight="38.0" prefWidth="582.0">
+         <children>
+            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="All" BorderPane.alignment="CENTER" />
+               </center>
+               <left>
+                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Breakfast" BorderPane.alignment="CENTER" />
+               </center>
+               <left>
+                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Lunch" BorderPane.alignment="CENTER" />
+               </center>
+               <left>
+                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+            <BorderPane prefHeight="45.0" prefWidth="163.0" style="-fx-background-color: FFFFFF;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Dinner" BorderPane.alignment="CENTER" />
+               </center>
+               <left>
+                  <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
