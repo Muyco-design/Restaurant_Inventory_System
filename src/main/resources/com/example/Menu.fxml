@@ -434,7 +434,7 @@
             <Button fx:id="LastMonth" mnemonicParsing="false" onAction="#LastMonth" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="Last Month" textFill="#206f22" />
          </children>
       </HBox>
-      <HBox fx:id="logOffBox" alignment="CENTER" layoutX="35.0" layoutY="936.0" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="74.0" prefWidth="200.0">
+      <HBox fx:id="logOffBox" alignment="CENTER" layoutX="42.0" layoutY="942.0" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="65.0" prefWidth="200.0">
          <children>
             <ImageView>
                <image>
