@@ -38,14 +38,14 @@
                <font>
                   <Font size="21.0" />
                </font></PasswordField>
-            <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#handleLogin" onMouseEntered="#handleLoginHovIn" onMouseExited="#handleLoginHovOut" prefHeight="45.0" prefWidth="388.0" styleClass="login-btn" text="Log In" textFill="#f3e7b4">
+            <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#handleLogin" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="45.0" prefWidth="388.0" styleClass="login-btn" text="Log In" textFill="#f3e7b4">
                <VBox.margin>
                   <Insets bottom="7.0" />
                </VBox.margin>
                <font>
                   <Font size="24.0" />
                </font></Button>
-            <Button fx:id="SignupButton" mnemonicParsing="false" onMouseEntered="#handleSignupHovIn" onMouseExited="#handleSignupHovOut" prefHeight="44.0" prefWidth="377.0" styleClass="login-btn" text="Sign Up" textFill="#f3e7b4">
+            <Button fx:id="SignupButton" mnemonicParsing="false" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="44.0" prefWidth="377.0" styleClass="login-btn" text="Sign Up" textFill="#f3e7b4">
                <font>
                   <Font size="24.0" />
                </font></Button>

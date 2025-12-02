@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import javafx.scene.control.Label;
 import javafx.animation.*;
+import javafx.scene.Node;
 
 import java.io.IOException;
 
@@ -93,37 +94,19 @@ public class LoginController {
     }
 
     @FXML
-    void handleLoginHovIn(MouseEvent event) {
-        ScaleTransition st = new ScaleTransition(Duration.millis(200), LoginButton);
+void handleButtonHover(MouseEvent event) {
+    Node button = (Node) event.getSource(); // Get the button that fired the event
+    ScaleTransition st = new ScaleTransition(Duration.millis(200), button);
+    
+    if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
         st.setToX(1.1); // Scale X to 110%
         st.setToY(1.1); // Scale Y to 110%
-        st.play();
-
-    }
-
-    @FXML
-    void handleLoginHovOut(MouseEvent event) {
-        ScaleTransition st = new ScaleTransition(Duration.millis(200), LoginButton);
+    } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
         st.setToX(1.0); // Scale back to original X
         st.setToY(1.0); // Scale back to original Y
-        st.play();
-
     }
-
-    @FXML
-    void handleSignupHovIn(MouseEvent event) {
-        ScaleTransition st = new ScaleTransition(Duration.millis(200), SignupButton);
-        st.setToX(1.1); // Scale X to 110%
-        st.setToY(1.1); // Scale Y to 110%
-        st.play();
-    }
-
-    @FXML
-    void handleSignupHovOut(MouseEvent event) {
-        ScaleTransition st = new ScaleTransition(Duration.millis(200), SignupButton);
-        st.setToX(1.0); // Scale back to original X
-        st.setToY(1.0); // Scale back to original Y
-        st.play();
-    }
+    
+    st.play();
+}
 
 }
