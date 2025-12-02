@@ -22,6 +22,11 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
+import javafx.scene.control.Label;
+import javafx.animation.*;
+
 import java.io.IOException;
 
 public class Menucontroller {
@@ -98,6 +103,9 @@ public class Menucontroller {
 
     // ===== Week Buttons =====
     @FXML private Button Week1, Week2, Week3, Week4, LastMonth;
+
+    
+    
 
     // ===== Initialize =====
     @FXML
@@ -273,4 +281,8 @@ public class Menucontroller {
             e.printStackTrace();
         }
     }
+
+    
+
+
 }
