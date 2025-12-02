@@ -1,15 +1,19 @@
 package com.example;
 
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -96,8 +100,27 @@ private void goBack() {
         Parent root = loader.load();
 
         stage.setScene(new Scene(root));
-    } catch (IOException e) {
+        } catch (IOException e) {
         e.printStackTrace();
+        }
     }
-}
+    
+    @FXML
+    void handleButtonHover(MouseEvent event) {
+    Node button = (Node) event.getSource(); // Get the button that fired the event
+    ScaleTransition st = new ScaleTransition(Duration.millis(200), button);
+    
+    if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
+        button.setStyle("-fx-cursor: hand;");
+        st.setToX(1.1); // Scale X to 110%
+        st.setToY(1.1); // Scale Y to 110%
+    } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
+        st.setToX(1.0); // Scale back to original X
+        st.setToY(1.0); // Scale back to original Y
+    }
+    
+        st.play();
+    }
+
+    
 }

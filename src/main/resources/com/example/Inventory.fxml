@@ -59,7 +59,7 @@
       <PieChart layoutX="1104.0" layoutY="387.0" prefHeight="285.24" prefWidth="285.0" />
       <VBox layoutX="74.0" layoutY="294.0" prefHeight="256.0" prefWidth="242.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+            <HBox onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                <children>
                   <ImageView fx:id="Dashboardicon">
                      <image>
@@ -79,7 +79,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView>
                      <image>
@@ -127,16 +127,6 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="goBack" alignment="CENTER" layoutX="62.0" layoutY="938.0" mnemonicParsing="false" onAction="#goBack" prefHeight="66.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Button>
-      <ImageView layoutX="41.0" layoutY="951.0">
-         <image>
-            <Image url="@../../Images/df8f59d0-c3a8-4bd6-ba8f-f60556cc9939.png" />
-         </image>
-      </ImageView>
       <ScrollPane layoutX="402.0" layoutY="248.0" prefHeight="826.0" prefWidth="1011.0" style="-fx-background-color: transparent;">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1076.0" prefWidth="999.0" style="-fx-background-color: white;">
@@ -176,7 +166,7 @@
       </CheckBox>
       <HBox layoutX="610.0" layoutY="120.0" prefHeight="38.0" prefWidth="478.0">
          <children>
-            <BorderPane prefHeight="38.0" prefWidth="97.0" style="-fx-background-color: FFFFFF;" styleClass="search_Bar-Border">
+            <BorderPane onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="38.0" prefWidth="97.0" style="-fx-background-color: FFFFFF;" styleClass="search_Bar-Border">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -202,7 +192,7 @@
                   </Label>
                </right>
             </BorderPane>
-            <BorderPane prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: FFFFFF;" styleClass="search_Bar-Border">
+            <BorderPane onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: FFFFFF;" styleClass="search_Bar-Border">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -220,7 +210,7 @@
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="28.0" style="-fx-background-color: #94AC85;" text="0" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
-            <BorderPane prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: FFFFFF;" styleClass="search_Bar-Border">
+            <BorderPane onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: FFFFFF;" styleClass="search_Bar-Border">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -241,7 +231,7 @@
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="28.0" style="-fx-background-color: #94AC85;" text="0" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
-            <BorderPane prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: FFFFFF;" styleClass="search_Bar-Border">
+            <BorderPane onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: FFFFFF;" styleClass="search_Bar-Border">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -259,6 +249,20 @@
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="28.0" style="-fx-background-color: #94AC85;" text="0" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
+         </children>
+      </HBox>
+      <HBox fx:id="logOffBox" alignment="CENTER" layoutX="42.0" layoutY="944.0" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="65.0" prefWidth="200.0">
+         <children>
+            <ImageView>
+               <image>
+                  <Image url="@../../Images/df8f59d0-c3a8-4bd6-ba8f-f60556cc9939.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="goBack" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="66.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
    </children>
