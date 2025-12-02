@@ -71,7 +71,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox fx:id="MenuHBox" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="MenuHBox" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView>
                      <image>
@@ -94,7 +94,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox fx:id="InventoryHbox" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="InventoryHbox" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView>
                      <image>
@@ -161,16 +161,6 @@
             <String fx:value="analytics-value" />
          </styleClass>
       </BarChart>
-      <Button fx:id="goBack" alignment="CENTER" layoutX="62.0" layoutY="938.0" mnemonicParsing="false" onAction="#goBack" prefHeight="66.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Button>
-      <ImageView layoutX="41.0" layoutY="951.0">
-         <image>
-            <Image url="@../../Images/df8f59d0-c3a8-4bd6-ba8f-f60556cc9939.png" />
-         </image>
-      </ImageView>
       <ImageView layoutX="402.0" layoutY="125.0">
          <image>
             <Image url="@../../Images/0513b4c2-fa45-4706-b3c5-80bfc5d75b94.png" />
@@ -421,27 +411,41 @@
       <ImageView fx:id="ProfilePicture" fitHeight="47.0" fitWidth="51.0" layoutX="1233.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
       <HBox layoutX="686.0" layoutY="673.0" prefHeight="27.0" prefWidth="431.0">
          <children>
-            <Button fx:id="Week1" mnemonicParsing="false" onAction="#Week1" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="1st Week" textFill="#206f22">
+            <Button fx:id="Week1" mnemonicParsing="false" onAction="#Week1" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="1st Week" textFill="#206f22">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="Week2" mnemonicParsing="false" onAction="#Week2" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="2nd Week" textFill="#206f22">
+            <Button fx:id="Week2" mnemonicParsing="false" onAction="#Week2" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="2nd Week" textFill="#206f22">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="Week3" mnemonicParsing="false" onAction="#Week3" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="3rd Week" textFill="#206f22">
+            <Button fx:id="Week3" mnemonicParsing="false" onAction="#Week3" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="3rd Week" textFill="#206f22">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="Week4" mnemonicParsing="false" onAction="#Week4" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="4th Week" textFill="#206f22">
+            <Button fx:id="Week4" mnemonicParsing="false" onAction="#Week4" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="4th Week" textFill="#206f22">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="LastMonth" mnemonicParsing="false" onAction="#LastMonth" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="Last Month" textFill="#206f22" />
+            <Button fx:id="LastMonth" mnemonicParsing="false" onAction="#LastMonth" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="Last Month" textFill="#206f22" />
+         </children>
+      </HBox>
+      <HBox fx:id="logOffBox" alignment="CENTER" layoutX="35.0" layoutY="936.0" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="74.0" prefWidth="200.0">
+         <children>
+            <ImageView>
+               <image>
+                  <Image url="@../../Images/df8f59d0-c3a8-4bd6-ba8f-f60556cc9939.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="goBack" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="66.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
    </children>
