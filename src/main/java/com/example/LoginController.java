@@ -93,7 +93,7 @@ public class LoginController {
         ft.play();
     }
 
-    @FXML
+@FXML
 void handleButtonHover(MouseEvent event) {
     Node button = (Node) event.getSource(); // Get the button that fired the event
     ScaleTransition st = new ScaleTransition(Duration.millis(200), button);

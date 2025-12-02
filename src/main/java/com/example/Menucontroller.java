@@ -1,14 +1,10 @@
 package com.example;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -21,6 +17,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import javafx.scene.input.MouseEvent;
+import javafx.animation.*;
 
 import java.io.IOException;
 
@@ -62,6 +61,8 @@ public class Menucontroller {
     private Button DashboardButton, InventoryButton, MenuButton, goBack;
     @FXML 
     private HBox DashboardHbox;
+    @FXML
+    private HBox logOffBox;
     @FXML 
     private ImageView Dashboardicon, ProfilePicture; 
 
@@ -98,6 +99,9 @@ public class Menucontroller {
 
     // ===== Week Buttons =====
     @FXML private Button Week1, Week2, Week3, Week4, LastMonth;
+
+    
+    
 
     // ===== Initialize =====
     @FXML
@@ -273,4 +277,21 @@ public class Menucontroller {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void handleButtonHover(MouseEvent event) {
+    Node button = (Node) event.getSource(); // Get the button that fired the event
+    ScaleTransition st = new ScaleTransition(Duration.millis(200), button);
+    
+    if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
+        st.setToX(1.1); // Scale X to 110%
+        st.setToY(1.1); // Scale Y to 110%
+    } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
+        st.setToX(1.0); // Scale back to original X
+        st.setToY(1.0); // Scale back to original Y
+    }
+    
+        st.play();
+    }
+
 }
