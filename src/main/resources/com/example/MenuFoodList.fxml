@@ -246,18 +246,18 @@
       </ImageView>
       <AnchorPane layoutX="345.0" layoutY="181.0" prefHeight="912.0" prefWidth="801.0" style="-fx-background-color: transparent;">
          <children>
-            <ScrollPane layoutX="-45.0" prefHeight="912.0" prefWidth="801.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane fx:id="MenuListPane" layoutX="-45.0" prefHeight="912.0" prefWidth="801.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <FlowPane hgap="20.0" prefWidth="820.0" style="-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;" vgap="20.0">
+                  <FlowPane fx:id="MenuFlowPane" hgap="20.0" prefWidth="820.0" style="-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;" vgap="20.0">
                      <children>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -274,7 +274,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -285,14 +285,14 @@
                               <Insets left="10.0" top="10.0" />
                            </FlowPane.margin>
                         </VBox>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -309,7 +309,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -320,14 +320,14 @@
                               <Insets left="10.0" top="10.0" />
                            </FlowPane.margin>
                         </VBox>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -344,7 +344,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -355,14 +355,14 @@
                               <Insets left="10.0" top="10.0" />
                            </FlowPane.margin>
                         </VBox>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -379,7 +379,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -390,14 +390,14 @@
                               <Insets left="10.0" top="10.0" />
                            </FlowPane.margin>
                         </VBox>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -414,7 +414,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -425,14 +425,14 @@
                               <Insets left="10.0" top="10.0" />
                            </FlowPane.margin>
                         </VBox>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -449,7 +449,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -460,19 +460,19 @@
                               <Insets left="10.0" top="10.0" />
                            </FlowPane.margin>
                         </VBox>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" prefHeight="211.0" prefWidth="218.0" text="Tocilog made fresh " wrapText="true" />
+                              <Label fx:id="foodPriceLabel" alignment="TOP_LEFT" prefHeight="211.0" prefWidth="218.0" text="Tocilog made fresh " wrapText="true" />
                               <HBox prefHeight="48.0" prefWidth="218.0">
                                  <children>
                                     <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
@@ -484,7 +484,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -495,14 +495,14 @@
                               <Insets left="10.0" top="10.0" />
                            </FlowPane.margin>
                         </VBox>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -519,7 +519,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -530,14 +530,14 @@
                               <Insets left="10.0" top="10.0" />
                            </FlowPane.margin>
                         </VBox>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -554,7 +554,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -565,14 +565,14 @@
                               <Insets left="10.0" top="10.0" />
                            </FlowPane.margin>
                         </VBox>
-                        <VBox prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
+                        <VBox onMouseClicked="#handleAddToOrder" prefHeight="280.0" prefWidth="240.0" spacing="8.0" styleClass="card">
                            <children>
-                              <ImageView fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
+                              <ImageView fx:id="FoodImage" fitHeight="183.0" fitWidth="220.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../Images/Filipino%20Beef%20Tapa%20for%20an%20Easy%20and%20Hearty%20Breakfast.png" />
                                  </image>
                               </ImageView>
-                              <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
+                              <Label fx:id="foodNameLabel" contentDisplay="CENTER" prefHeight="24.0" prefWidth="190.0" text="Food Name" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -589,7 +589,7 @@
                                        </HBox.margin>
                                     </ImageView>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="68.0" prefWidth="127.0" text="Label" />
-                                    <Label alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
+                                    <Label fx:id="foodPriceLabel" alignment="BOTTOM_RIGHT" prefHeight="70.0" prefWidth="63.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -607,6 +607,42 @@
                   </FlowPane>
                </content>
             </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="orderPanel" layoutX="1151.0" layoutY="194.0" prefHeight="826.0" prefWidth="281.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #E6E6E6;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="1151.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="194.0">
+         <children>
+            <VBox fx:id="orderContainer" alignment="TOP_CENTER" layoutY="-1.0" prefHeight="200.0" prefWidth="280.0" spacing="15.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <Label fx:id="orderTitle" prefHeight="27.0" prefWidth="312.0" text="Order #1">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane fx:id="orderScrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                     <content>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" />
+                     </content>
+                  </ScrollPane>
+                  <HBox fx:id="totalCont" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Label text="TOTAL:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalPriceLabel" text="Label" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="confirmOrderButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #E8F0E4; -fx-background-radius: 20; -fx-text-fill: #2F4E1C;" text="Confirm Order">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>
