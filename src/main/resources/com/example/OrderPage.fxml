@@ -125,6 +125,29 @@
                   </Button>
                </children>
             </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4A6E34;" styleClass="search_Bar-Border">
+               <children>
+                  <ImageView>
+                     <image>
+                        <Image url="@../../Images/0c4598cf-b32c-4c8f-8bad-7f4a24d2617b.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button fx:id="InventoryButton1" mnemonicParsing="false" prefHeight="97.0" prefWidth="202.0" style="-fx-background-color: transparent;" text="Order" textFill="WHITE">
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding>
+                     <font>
+                        <Font name="Gill Sans MT" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
       <Button fx:id="goBack" alignment="CENTER" layoutX="62.0" layoutY="938.0" mnemonicParsing="false" onAction="#goBack" prefHeight="66.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
@@ -138,13 +161,13 @@
          </image>
       </ImageView>
       <ScrollPane layoutX="402.0" layoutY="248.0" prefHeight="826.0" prefWidth="1011.0" style="-fx-background-color: transparent;">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1076.0" prefWidth="999.0" style="-fx-background-color: white;">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1076.0" prefWidth="999.0" style="-fx-background-color: white;">
                <children>
                   <ListView fx:id="inventoryList" layoutX="33.0" layoutY="33.0" prefHeight="1076.0" prefWidth="999.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-        </content>
+         </content>
       </ScrollPane>
       <ImageView fitHeight="51.0" fitWidth="200.0" layoutX="1220.0" layoutY="37.0">
          <image>

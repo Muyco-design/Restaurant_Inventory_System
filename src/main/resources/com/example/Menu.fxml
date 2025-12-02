@@ -39,7 +39,7 @@
       </ImageView>
       <HBox layoutX="374.0" layoutY="12.0" prefHeight="81.0" prefWidth="431.0">
          <children>
-            <TextField fx:id="SearchBarMenu" prefHeight="32.0" prefWidth="386.0" promptText="Search" styleClass="search_Bar-Border">
+            <TextField fx:id="SearchBarMenu" onAction="#handleSearch" prefHeight="32.0" prefWidth="386.0" promptText="Search" styleClass="search_Bar-Border">
                <font>
                   <Font size="18.0" />
                </font>
@@ -61,7 +61,7 @@
                         <Insets top="25.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="DashboardButton" mnemonicParsing="false" prefHeight="82.0" prefWidth="329.0" style="-fx-background-color: transparent;" text="Dashboard" textFill="WHITE">
+                  <Button fx:id="DashboardButton" mnemonicParsing="false" onAction="#handleDashboard" prefHeight="82.0" prefWidth="329.0" style="-fx-background-color: transparent;" text="Dashboard" textFill="WHITE">
                      <font>
                         <Font name="Gill Sans MT" size="24.0" />
                      </font>
@@ -147,7 +147,7 @@
                </children>
             </HBox>
          </center></BorderPane>
-      <BarChart fx:id="BarChart" alternativeColumnFillVisible="true" layoutX="374.0" layoutY="378.0" onInputMethodTextChanged="#initialize" prefHeight="322.0" prefWidth="1007.0">
+      <BarChart fx:id="BarChart" alternativeColumnFillVisible="true" layoutX="374.0" layoutY="378.0" prefHeight="322.0" prefWidth="1007.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -276,8 +276,8 @@
                </rowConstraints>
                <children>
                   <Label fx:id="LeastSellingOne" styleClass="food-name" text="food Name" />
-                  <Label prefHeight="38.0" prefWidth="48.0" styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
-                  <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="144.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="LSO1" prefHeight="38.0" prefWidth="48.0" styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
+                  <Label fx:id="LSE1" alignment="CENTER" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="144.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <styleClass>
                   <String fx:value="meal-card" />
@@ -296,8 +296,8 @@
               </rowConstraints>
                <children>
                   <Label fx:id="LeastSellingTwo" styleClass="food-name" text="food Name" />
-                  <Label styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
-                  <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="171.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="LSO2" styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
+                  <Label fx:id="LSE2" alignment="CENTER" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="171.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <GridPane styleClass="meal-card">
@@ -312,8 +312,8 @@
               </rowConstraints>
                <children>
                   <Label fx:id="LeastSellingThree" styleClass="food-name" text="food Name" />
-                  <Label styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
-                  <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="225.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="LSO3" styleClass="food-orders" text="0 orders" GridPane.rowIndex="2" />
+                  <Label fx:id="LSE3" alignment="CENTER" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="225.0" styleClass="food-earnings" text="+0 Earned" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>
@@ -370,6 +370,11 @@
                         <Insets left="35.0" />
                      </GridPane.margin>
                   </Label>
+                  <ImageView fitHeight="38.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" styleClass="image-circle" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../Images/Extra-Creamy-Halo-Halo.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
             <GridPane styleClass="meal-card">
@@ -393,6 +398,11 @@
                         <Insets left="35.0" />
                      </GridPane.margin>
                   </Label>
+                  <ImageView fitHeight="38.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" styleClass="image-circle" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../Images/Extra-Creamy-Halo-Halo.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
          </children>
@@ -404,10 +414,35 @@
       </ImageView>
       <VBox layoutX="1294.0" layoutY="32.0" prefHeight="38.0" prefWidth="100.0">
          <children>
-            <Label styleClass="food-name" text="Username" />
-            <Label styleClass="food-earnings" text="Role" />
+            <Label fx:id="Username" styleClass="food-name" text="Username" />
+            <Label fx:id="UserRole" styleClass="food-earnings" text="Role" />
          </children>
       </VBox>
       <ImageView fx:id="ProfilePicture" fitHeight="47.0" fitWidth="51.0" layoutX="1233.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox layoutX="686.0" layoutY="673.0" prefHeight="27.0" prefWidth="431.0">
+         <children>
+            <Button fx:id="Week1" mnemonicParsing="false" onAction="#Week1" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="1st Week" textFill="#206f22">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="Week2" mnemonicParsing="false" onAction="#Week2" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="2nd Week" textFill="#206f22">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="Week3" mnemonicParsing="false" onAction="#Week3" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="3rd Week" textFill="#206f22">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="Week4" mnemonicParsing="false" onAction="#Week4" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="4th Week" textFill="#206f22">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="LastMonth" mnemonicParsing="false" onAction="#LastMonth" style="-fx-background-color: light yellow;" styleClass="search_Bar-Border" text="Last Month" textFill="#206f22" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
