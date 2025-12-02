@@ -46,7 +46,7 @@
       <PieChart layoutX="1104.0" layoutY="387.0" prefHeight="285.24" prefWidth="285.0" />
       <VBox layoutX="74.0" layoutY="294.0" prefHeight="256.0" prefWidth="242.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView fx:id="DashboardIcon">
                      <image>
@@ -89,7 +89,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <ImageView>
                      <image>
@@ -114,16 +114,6 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="goBack" alignment="CENTER" layoutX="62.0" layoutY="938.0" mnemonicParsing="false" onAction="#goBack" prefHeight="66.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Button>
-      <ImageView layoutX="41.0" layoutY="951.0">
-         <image>
-            <Image url="@../../Images/df8f59d0-c3a8-4bd6-ba8f-f60556cc9939.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="51.0" fitWidth="200.0" layoutX="1220.0" layoutY="37.0">
          <image>
             <Image url="@../../Images/dbf0efd8-7d37-4e9a-a1a0-36addc764db3.png" />
@@ -187,6 +177,20 @@
                   <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
                </left>
             </BorderPane>
+         </children>
+      </HBox>
+      <HBox fx:id="logOffBox" alignment="CENTER" layoutX="42.0" layoutY="942.0" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="65.0" prefWidth="200.0">
+         <children>
+            <ImageView>
+               <image>
+                  <Image url="@../../Images/df8f59d0-c3a8-4bd6-ba8f-f60556cc9939.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="goBack" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" prefHeight="66.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
    </children>
