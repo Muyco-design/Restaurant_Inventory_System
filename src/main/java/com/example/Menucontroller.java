@@ -284,6 +284,7 @@ public class Menucontroller {
     ScaleTransition st = new ScaleTransition(Duration.millis(200), button);
     
     if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
+        button.setStyle("-fx-cursor: hand;");
         st.setToX(1.1); // Scale X to 110%
         st.setToY(1.1); // Scale Y to 110%
     } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {

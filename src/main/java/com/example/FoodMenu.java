@@ -96,8 +96,10 @@ private void goBack() {
         Parent root = loader.load();
 
         stage.setScene(new Scene(root));
-    } catch (IOException e) {
+        } catch (IOException e) {
         e.printStackTrace();
+        }
     }
-}
+
+    
 }
