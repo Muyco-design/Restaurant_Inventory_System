@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<HBox spacing="20" alignment="CENTER_LEFT"
+      xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.ItemRowController"
+      styleClass="item-row">
+
+    <!-- Stock Control -->
+    <HBox alignment="CENTER" spacing="12">
+        <Button text="-" fx:id="btnMinus" styleClass="stock-btn"/>
+        <Label fx:id="lblStock" text="10" styleClass="stock-label"/>
+        <Button text="+" fx:id="btnPlus" styleClass="stock-btn"/>
+    </HBox>
+
+    <!-- Food Image -->
+    <ImageView fx:id="foodImage"
+               fitWidth="90" fitHeight="55"
+               preserveRatio="true"
+               styleClass="item-image"/>
+
+    <!-- Description -->
+    <VBox spacing="3" styleClass="desc-box">
+        <Label fx:id="lblName" text="Food Name" styleClass="item-name"/>
+        <Label fx:id="lblDesc" text="Description" styleClass="item-desc"/>
+    </VBox>
+
+    <!-- Spacer → pushes price to right -->
+    <Region HBox.hgrow="ALWAYS"/>
+
+    <!-- Price -->
+    <Label fx:id="lblPrice" text="₱ 000" styleClass="item-price"/>
+
+</HBox>

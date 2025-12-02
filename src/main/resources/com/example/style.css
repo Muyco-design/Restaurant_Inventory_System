@@ -2,6 +2,11 @@
 .default-color0.chart-bar {
 -fx-bar-fill: #4A6E34;}
 
+.chart-bar {
+    -fx-background-radius: 10;   /* round the top of each bar */
+    -fx-padding: 0 5 0 5;        /* optional: space inside bars */
+}
+
 /* Legend */
 .chart-legend {
     -fx-background-color: rgb(255, 255, 255);
@@ -156,4 +161,55 @@
 
 .logout-button:hover {
     -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==== Item Row Styling (Figma Style) ==== */
+
+.item-row {
+    -fx-padding: 15;
+    -fx-background-color: transparent;
+    -fx-border-color: #e5e5e5;
+    -fx-border-width: 0 0 1 0;
+}
+
+.item-row:hover {
+    -fx-background-color: #f8f8f8;
+}
+
+.item-image {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 5, 0, 0, 1);
+    -fx-background-radius: 10;
+}
+
+/* Stock buttons */
+.stock-btn {
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a6e34; /* green color */
+    -fx-cursor: hand;
+}
+
+.stock-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Description section */
+.item-name {
+    -fx-font-family: "Gill Sans MT";
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+}
+
+.item-desc {
+    -fx-font-size: 14px;
+    -fx-text-fill: #777;
+}
+
+/* Price (Right-Aligned, Figma Style) */
+.item-price {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a6e34; /* Figma green */
 }
