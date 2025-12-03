@@ -164,7 +164,7 @@
             </Button>
          </children>
       </HBox>
-      <ImageView layoutX="422.0" layoutY="140.0">
+      <ImageView layoutX="381.0" layoutY="149.0">
          <image>
             <Image url="@../../Images/8cb40b48-59a9-411b-bdd2-08c09129e491.png" />
          </image>
@@ -207,14 +207,55 @@
                         <Label fx:id="totalPriceLabel" text="Label" />
                      </children>
                   </HBox>
-                  <Button fx:id="confirmOrderButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" style="-fx-background-color: #E8F0E4; -fx-background-radius: 20; -fx-text-fill: #2F4E1C;" text="Confirm Order">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
                </children>
             </VBox>
          </children>
       </AnchorPane>
+      <HBox fx:id="OrderPendingsCard" layoutX="375.0" layoutY="192.0" prefHeight="100.0" prefWidth="750.0" spacing="35.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 14; -fx-background-radius: 14; -fx-border-color: #e5e2d8; -fx-padding: 12 18 12 18;">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="OrderIDLabel" text="Order #">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="OrderQuantityLabel" text="Qty:" textFill="#3b5e30">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
+               <children>
+                  <Label fx:id="OrderTimeLabel" text="Time" textFill="#8d8d8d">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="OrderPriceLabel" text="Price" textFill="#3b5e30">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="OrderStatusLabel" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #2cd353; -fx-background-radius: 12;" text="Completed" textFill="#256834">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </HBox>
    </children>
 </AnchorPane>
