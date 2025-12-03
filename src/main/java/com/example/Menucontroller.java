@@ -1,6 +1,5 @@
 package com.example;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -22,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.animation.*;
 
 import java.io.IOException;
+
 
 public class Menucontroller {
 
@@ -119,80 +118,71 @@ public class Menucontroller {
     }
 
     // ===== Update BarChart =====
-    private void updateBarChart(int[] values, String title) {
-        BarChart.getData().clear();
+    private void updateBarChart(int[] values, String title, String[] label) {
+        
+        if (BarChart == null) {
+            System.out.println("BarChart is not initialized.");
+            return;
+        }
 
+        BarChart.getData().clear();
+        BarChart.layout();
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName(title);
 
-        String[] weeks = {"1st week", "2nd week", "3rd week", "4th week", "5th week", "6th week"};
+        
 
-        // Add bars starting very small for animation
         for (int i = 0; i < values.length; i++) {
-            XYChart.Data<String, Number> data = new XYChart.Data<>(weeks[i], 0.1);
-            series.getData().add(data);
+            series.getData().add(new XYChart.Data<>(label[i], values[i]));
         }
 
         BarChart.getData().add(series);
+        BarChart.setAnimated(false);
+        BarChart.layout(); // Ensure the chart updates and redraws
+        
+            
 
-        // Animate each bar
-        for (int i = 0; i < values.length; i++) {
-            XYChart.Data<String, Number> data = series.getData().get(i);
-            int finalValue = values[i];
-
-            Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(1.2),
-                            new KeyValue(data.YValueProperty(), finalValue, Interpolator.EASE_BOTH)
-                    )
-            );
-
-            timeline.setDelay(Duration.millis(i * 120));
-
-            Platform.runLater(() -> {
-                timeline.play();
-
-                Tooltip tooltip = new Tooltip("Value: " + finalValue);
-                Tooltip.install(data.getNode(), tooltip);
-
-                data.getNode().setOnMouseEntered(e ->
-                        data.getNode().setStyle("-fx-opacity: 0.8; -fx-scale-y: 1.08;")
-                );
-                data.getNode().setOnMouseExited(e ->
-                        data.getNode().setStyle("-fx-opacity: 1; -fx-scale-y: 1.0;")
-                );
-            });
-        }
     }
 
     // ===== Week Button Handlers =====
     @FXML
     private void LastMonth() {
-        int[] values = {823, 456, 1245, 1245, 596, 800};
-        updateBarChart(values, "In the Last Month");
+        System.out.println("Last Month button pressed!");
+        int[] values = {823, 456, 1245, 1245};
+        String[] label = {"Week 1","Week 2","Week 3","Week 4"}; 
+        updateBarChart(values, "In the Last Month",label);
     }
 
     @FXML
     private void Week1() {
-        int[] values = {823, 0, 0, 0, 0, 0};
-        updateBarChart(values, "1st Week");
+        System.out.println("Week 1 button pressed!");
+        int[] values = {823, 0, 0, 0, 0, 0, 0};
+        String[] label = {"Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"}; 
+        updateBarChart(values, "Week 1",label);
     }
 
     @FXML
     private void Week2() {
-        int[] values = {0, 456, 0, 0, 0, 0};
-        updateBarChart(values, "2nd Week");
+         System.out.println("Week 2 button pressed!");
+        int[] values = {0, 456, 0, 0, 0, 0, 0};
+        String[] label = {"Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"}; 
+        updateBarChart(values, "Week 2",label);
     }
 
     @FXML
     private void Week3() {
-        int[] values = {0, 0, 1245, 0, 0, 0};
-        updateBarChart(values, "3rd Week");
+         System.out.println("Week 3 button pressed!");
+        int[] values = {0, 0, 1245, 0, 0, 0, 0};
+        String[] label = {"Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"}; 
+        updateBarChart(values, "Week 3",label);
     }
 
     @FXML
     private void Week4() {
-        int[] values = {0, 0, 0, 1245, 0, 0};
-        updateBarChart(values, "4th Week");
+        System.out.println("Week 4 button pressed!");
+        int[] values = {0, 0, 0, 1245, 0, 0, 0};
+        String[] label = {"Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"}; 
+        updateBarChart(values, "Week 4",label);
     }
 
     // ===== Dashboard Updates =====
