@@ -645,7 +645,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <HBox layoutX="74.0" layoutY="550.0" prefHeight="86.0" prefWidth="242.0">
+      <HBox layoutX="74.0" layoutY="550.0" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonHover" prefHeight="86.0" prefWidth="242.0">
          <children>
             <ImageView>
                <image>
@@ -655,7 +655,7 @@
                   <Insets top="25.0" />
                </HBox.margin>
             </ImageView>
-            <Button fx:id="InventoryButton1" mnemonicParsing="false" prefHeight="97.0" prefWidth="202.0" style="-fx-background-color: transaprent;" text="Order" textFill="WHITE">
+            <Button fx:id="OrderButton" mnemonicParsing="false" onAction="#handleOrderButton" prefHeight="97.0" prefWidth="202.0" style="-fx-background-color: transaprent;" text="Order" textFill="WHITE">
                <padding>
                   <Insets right="15.0" />
                </padding>
