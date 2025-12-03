@@ -46,7 +46,7 @@ public class InventoryController {
     @FXML private Button filterDinner;
 
     @FXML private ListView<HBox> inventoryList;
-    @FXML private VBox ItemContainer;
+    
 
     // ---- NEW ----
     private String selectedCategory = "All";          // Stores the active filter category
