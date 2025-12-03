@@ -645,5 +645,28 @@
             </VBox>
          </children>
       </AnchorPane>
+      <HBox layoutX="74.0" layoutY="550.0" prefHeight="86.0" prefWidth="242.0">
+         <children>
+            <ImageView>
+               <image>
+                  <Image url="@../../Images/914f3a18-a99c-421e-9841-296ca790b9e7.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="25.0" />
+               </HBox.margin>
+            </ImageView>
+            <Button fx:id="InventoryButton1" mnemonicParsing="false" prefHeight="97.0" prefWidth="202.0" style="-fx-background-color: transaprent;" text="Order" textFill="WHITE">
+               <padding>
+                  <Insets right="15.0" />
+               </padding>
+               <font>
+                  <Font name="Gill Sans MT" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" right="50.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
