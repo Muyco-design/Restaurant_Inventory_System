@@ -98,7 +98,7 @@
                         <Insets top="25.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="InventoryButton" mnemonicParsing="false" prefHeight="97.0" prefWidth="202.0" style="-fx-background-color: transparent;" text="Inventory" textFill="WHITE">
+                  <Button fx:id="InventoryButton" mnemonicParsing="false" onAction="#handleInventoryButton" prefHeight="97.0" prefWidth="202.0" style="-fx-background-color: transparent;" text="Inventory" textFill="WHITE">
                      <padding>
                         <Insets right="15.0" />
                      </padding>
