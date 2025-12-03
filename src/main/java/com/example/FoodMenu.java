@@ -58,6 +58,7 @@ public class FoodMenu {
     @FXML private Button InventoryButton;
     @FXML private Button MenuButton;
     @FXML private Button goBack;
+    @FXML private Button OrderButton;
 
     // Menu list / food cards
     @FXML private FlowPane MenuFlowPane;
@@ -101,6 +102,11 @@ public class FoodMenu {
     @FXML
     void handleInventoryButton(ActionEvent event) {
         loadPage("/com/example/Inventory.fxml", event);
+    }
+
+    @FXML
+    void handleOrderButton(ActionEvent event) {
+        loadPage("/com/example/OrderPage.fxml", event);
     }
 
 
