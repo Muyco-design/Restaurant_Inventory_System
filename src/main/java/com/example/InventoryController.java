@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.VBox; //Something was here but got removed. Just place it back if you remember. - Jez
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -46,7 +46,7 @@ public class InventoryController {
     @FXML private Button filterDinner;
 
     @FXML private ListView<HBox> inventoryList;
-    
+    //Something was here but got removed. Just place it back if you remember. - Jez
 
     // ---- NEW ----
     private String selectedCategory = "All";          // Stores the active filter category
