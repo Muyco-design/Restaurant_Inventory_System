@@ -46,9 +46,6 @@ public class OrderPage {
     private TextField SearchBarMenu;
 
     @FXML
-    private Button confirmOrderButton;
-
-    @FXML
     private Button goBack;
 
     @FXML
