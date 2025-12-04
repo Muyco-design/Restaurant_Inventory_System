@@ -104,7 +104,11 @@ public class Menucontroller {
     @FXML private Button goBack;
     @FXML private HBox logOffBox;
 
+    @FXML private Label NameOOS1, NameOOS2, NameOOS3;
 
+    @FXML private Label QtyOOS1, QtyOOS2, QtyOOS3;
+
+    @FXML private ImageView ImageOOS1, ImageOOS2, ImageOOS3;
     // ============================================================
     // LOCAL VARIABLES
     // ============================================================
