@@ -60,7 +60,7 @@ public class InventoryController {
         this.currentUser = user;
         this.currentRole = role;
 
-        boolean isWorker = "WORKER".equalsIgnoreCase(role);
+        boolean isWorker = "employee".equalsIgnoreCase(role);
 
         DashboardButton.setVisible(!isWorker);
         DashboardButton.setManaged(!isWorker);

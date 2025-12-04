@@ -20,6 +20,9 @@ import javafx.scene.Node;
 
 import java.io.IOException;
 
+import java.sql.*; //Used for opening the SQLite Database
+
+
 public class LoginController {
 
     @FXML
@@ -40,38 +43,76 @@ public class LoginController {
     @FXML
     private TextField username;
 
+
     @FXML
-    void handleLogin(ActionEvent event) {
+    void handleLogin(ActionEvent event) throws SQLException{
         String user = username.getText();
         String pass = Password.getText();
 
+
         try {
-            Stage stage = (Stage) username.getScene().getWindow();
-            FXMLLoader loader;
-            Parent root;
+                Connection conn = DatabaseConnector.connect();
+                String sql = "SELECT * FROM account";
+                ResultSet rs = conn.createStatement().executeQuery(sql);
 
-            // Hardcoded login for testing
-            if ("manager".equals(user) && "admin123".equals(pass)) {
-                loader = new FXMLLoader(getClass().getResource("/com/example/Menu.fxml"));
-                root = loader.load();
+                Stage stage = (Stage) username.getScene().getWindow();
+                FXMLLoader loader;
+                Parent root;
 
-                Menucontroller controller = loader.getController();
-                controller.setCurrentUser(user, "MANAGER");
+                String DB_username = "";
+                String DB_password = "";
+                String DB_role;
 
-                stage.setScene(new Scene(root));
-            } 
-            else if ("worker".equals(user) && "worker123".equals(pass)) {
-                loader = new FXMLLoader(getClass().getResource("/com/example/MenuFoodList.fxml"));
-                root = loader.load();
+                while(rs.next()) {
 
-                FoodMenu controller = loader.getController();
-                controller.setCurrentUser(user, "WORKER");
+                    DB_username = rs.getString("user_name");
+                    DB_password = rs.getString("password");
+                    DB_role = rs.getString("account_role");
+                    
+                    if(DB_username.equals(user) && DB_password.equals(pass)) {
 
-                stage.setScene(new Scene(root));
-            } 
-            else {
-                showAlert("Invalid username or password!");
-            }
+                        if(DB_role.equals("manager")) {
+
+                                loader = new FXMLLoader(getClass().getResource("/com/example/Menu.fxml"));
+
+                                root = loader.load();
+
+                                Menucontroller controller = loader.getController();
+                                controller.setCurrentUser(user, DB_role);
+
+                                stage.setScene(new Scene(root));
+
+                                break;
+
+                        } 
+                        
+                        if (DB_role.equals("employee")) {
+
+                                loader = new FXMLLoader(getClass().getResource("/com/example/MenuFoodList.fxml"));
+
+                                root = loader.load();
+
+                                FoodMenu controller = loader.getController();
+                                controller.setCurrentUser(user, DB_role);
+
+                                stage.setScene(new Scene(root));
+
+                                break;
+
+                        }
+
+                    }
+
+
+                }
+                
+                if (!(DB_username.equals(user) && DB_password.equals(pass))) {
+
+                    showAlert("Invalid username or password!");
+
+                }
+            
+            
 
         } catch (IOException e) {
             e.printStackTrace();
