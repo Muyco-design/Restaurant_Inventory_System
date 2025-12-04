@@ -1,3 +1,5 @@
 target/
 *.class
 pom.xml
+hs_err_pid51956.log
+databases/RestaurantDatabase.db
