@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="RestaurantDatabase.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1940"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="order_item" custom_title="0" dock_id="1" table="4,10:mainorder_item"/><dock_state state="000000ff00000000fd00000001000000020000043b000002bafc0100000001fb000000160064006f0063006b00420072006f007700730065003101000000000000043b0000012400ffffff000002580000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="account" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="50"/><column index="2" value="70"/><column index="3" value="62"/><column index="4" value="80"/><column index="5" value="58"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="categories" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="74"/><column index="2" value="94"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="meals" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="53"/><column index="2" value="140"/><column index="3" value="76"/><column index="4" value="300"/><column index="5" value="84"/><column index="6" value="46"/><column index="7" value="88"/><column index="8" value="81"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="order_item" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="87"/><column index="2" value="58"/><column index="3" value="55"/><column index="4" value="55"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="orders" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="55"/><column index="2" value="52"/><column index="3" value="116"/><column index="4" value="167"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="sqlite_sequence" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="85"/><column index="2" value="82"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1*">INSERT INTO order_item (order_item_id, order_id, meal_id, quantity) VALUES
+-- Order 1
+(1, 1, 1, 2),
+(2, 1, 2, 1),
+(3, 1, 3, 1),
+-- Order 2
+(4, 2, 4, 2),
+(5, 2, 5, 1),
+(6, 2, 6, 1),
+-- Order 3
+(7, 3, 7, 1),
+(8, 3, 8, 2),
+(9, 3, 9, 1),
+-- Order 4
+(10, 4, 10, 1),
+(11, 4, 1, 1),
+(12, 4, 2, 2),
+-- Order 5
+(13, 5, 3, 1),
+(14, 5, 4, 1),
+(15, 5, 5, 2),
+-- Order 6
+(16, 6, 6, 2),
+(17, 6, 7, 1),
+(18, 6, 8, 1),
+-- Order 7
+(19, 7, 9, 1),
+(20, 7, 10, 2),
+(21, 7, 1, 1),
+-- Order 8
+(22, 8, 2, 2),
+(23, 8, 3, 1),
+(24, 8, 4, 1),
+-- Order 9
+(25, 9, 5, 1),
+(26, 9, 6, 2),
+(27, 9, 7, 1),
+-- Order 10
+(28, 10, 8, 1),
+(29, 10, 9, 2),
+(30, 10, 10, 1),
+-- Order 11
+(31, 11, 1, 1),
+(32, 11, 3, 2),
+(33, 11, 5, 1),
+-- Order 12
+(34, 12, 2, 1),
+(35, 12, 4, 1),
+(36, 12, 6, 2),
+-- Order 13
+(37, 13, 7, 1),
+(38, 13, 8, 2),
+(39, 13, 9, 1),
+-- Order 14
+(40, 14, 10, 1),
+(41, 14, 1, 2),
+(42, 14, 2, 1),
+-- Order 15
+(43, 15, 3, 1),
+(44, 15, 4, 2),
+(45, 15, 5, 1),
+-- Order 16
+(46, 16, 6, 1),
+(47, 16, 7, 2),
+(48, 16, 8, 1),
+-- Order 17
+(49, 17, 9, 1),
+(50, 17, 10, 2),
+(51, 17, 1, 1),
+-- Order 18
+(52, 18, 2, 1),
+(53, 18, 3, 2),
+(54, 18, 4, 1),
+-- Order 19
+(55, 19, 5, 2),
+(56, 19, 6, 1),
+(57, 19, 7, 1),
+-- Order 20
+(58, 20, 8, 1),
+(59, 20, 9, 2),
+(60, 20, 10, 1),
+-- Order 21
+(61, 21, 1, 2),
+(62, 21, 2, 1),
+(63, 21, 3, 1),
+-- Order 22
+(64, 22, 4, 1),
+(65, 22, 5, 2),
+(66, 22, 6, 1),
+-- Order 23
+(67, 23, 7, 1),
+(68, 23, 8, 2),
+(69, 23, 9, 1),
+-- Order 24
+(70, 24, 10, 1),
+(71, 24, 1, 2),
+(72, 24, 2, 1),
+-- Order 25
+(73, 25, 3, 1),
+(74, 25, 4, 2),
+(75, 25, 5, 1),
+-- Order 26
+(76, 26, 6, 1),
+(77, 26, 7, 2),
+(78, 26, 8, 1),
+-- Order 27
+(79, 27, 9, 1),
+(80, 27, 10, 2),
+(81, 27, 1, 1),
+-- Order 28
+(82, 28, 2, 1),
+(83, 28, 3, 2),
+(84, 28, 4, 1),
+-- Order 29
+(85, 29, 5, 2),
+(86, 29, 6, 1),
+(87, 29, 7, 1),
+-- Order 30
+(88, 30, 8, 1),
+(89, 30, 9, 2),
+(90, 30, 10, 1),
+-- Order 31
+(91, 31, 1, 1),
+(92, 31, 2, 2),
+(93, 31, 3, 1),
+-- Order 32
+(94, 32, 4, 1),
+(95, 32, 5, 1),
+(96, 32, 6, 2),
+-- Order 33
+(97, 33, 7, 2),
+(98, 33, 8, 1),
+(99, 33, 9, 1),
+-- Order 34
+(100, 34, 10, 1),
+(101, 34, 1, 1),
+(102, 34, 2, 2),
+-- Order 35
+(103, 35, 3, 1),
+(104, 35, 4, 2),
+(105, 35, 5, 1),
+-- Order 36
+(106, 36, 6, 1),
+(107, 36, 7, 2),
+(108, 36, 8, 1),
+-- Order 37
+(109, 37, 9, 1),
+(110, 37, 10, 2),
+(111, 37, 1, 1),
+-- Order 38
+(112, 38, 2, 1),
+(113, 38, 3, 2),
+(114, 38, 4, 1),
+-- Order 39
+(115, 39, 5, 1),
+(116, 39, 6, 2),
+(117, 39, 7, 1),
+-- Order 40
+(118, 40, 8, 1),
+(119, 40, 9, 2),
+(120, 40, 10, 1),
+-- Order 41
+(121, 41, 1, 1),
+(122, 41, 2, 2),
+(123, 41, 3, 1),
+-- Order 42
+(124, 42, 4, 1),
+(125, 42, 5, 2),
+(126, 42, 6, 1),
+-- Order 43
+(127, 43, 7, 1),
+(128, 43, 8, 2),
+(129, 43, 9, 1),
+-- Order 44
+(130, 44, 10, 1),
+(131, 44, 1, 2),
+(132, 44, 2, 1),
+-- Order 45
+(133, 45, 3, 2),
+(134, 45, 4, 1),
+(135, 45, 5, 1),
+-- Order 46
+(136, 46, 6, 1),
+(137, 46, 7, 2),
+(138, 46, 8, 1),
+-- Order 47
+(139, 47, 9, 1),
+(140, 47, 10, 2),
+(141, 47, 1, 1),
+-- Order 48
+(142, 48, 2, 1),
+(143, 48, 3, 2),
+(144, 48, 4, 1),
+-- Order 49
+(145, 49, 5, 1),
+(146, 49, 6, 2),
+(147, 49, 7, 1),
+-- Order 50
+(148, 50, 8, 1),
+(149, 50, 9, 2),
+(150, 50, 10, 1),
+-- Order 51
+(151, 51, 1, 2),
+(152, 51, 2, 1),
+(153, 51, 3, 1),
+-- Order 52
+(154, 52, 4, 1),
+(155, 52, 5, 2),
+(156, 52, 6, 1),
+-- Order 53
+(157, 53, 7, 1),
+(158, 53, 8, 2),
+(159, 53, 9, 1),
+-- Order 54
+(160, 54, 10, 1),
+(161, 54, 1, 2),
+(162, 54, 2, 1),
+-- Order 55
+(163, 55, 3, 1),
+(164, 55, 4, 2),
+(165, 55, 5, 1),
+-- Order 56
+(166, 56, 6, 1),
+(167, 56, 7, 2),
+(168, 56, 8, 1),
+-- Order 57
+(169, 57, 9, 1),
+(170, 57, 10, 2),
+(171, 57, 1, 1),
+-- Order 58
+(172, 58, 2, 1),
+(173, 58, 3, 2),
+(174, 58, 4, 1),
+-- Order 59
+(175, 59, 5, 1),
+(176, 59, 6, 2),
+(177, 59, 7, 1),
+-- Order 60
+(178, 60, 8, 1),
+(179, 60, 9, 2),
+(180, 60, 10, 1),
+-- Order 61
+(181, 61, 1, 2),
+(182, 61, 2, 1),
+(183, 61, 3, 1),
+-- Order 62
+(184, 62, 4, 1),
+(185, 62, 5, 2),
+(186, 62, 6, 1),
+-- Order 63
+(187, 63, 7, 1),
+(188, 63, 8, 2),
+(189, 63, 9, 1),
+-- Order 64
+(190, 64, 10, 1),
+(191, 64, 1, 2),
+(192, 64, 2, 1),
+-- Order 65
+(193, 65, 3, 1),
+(194, 65, 4, 2),
+(195, 65, 5, 1),
+-- Order 66
+(196, 66, 6, 1),
+(197, 66, 7, 2),
+(198, 66, 8, 1),
+-- Order 67
+(199, 67, 9, 1),
+(200, 67, 10, 2),
+(201, 67, 1, 1),
+-- Order 68
+(202, 68, 2, 1),
+(203, 68, 3, 2),
+(204, 68, 4, 1),
+-- Order 69
+(205, 69, 5, 1),
+(206, 69, 6, 2),
+(207, 69, 7, 1),
+-- Order 70
+(208, 70, 8, 1),
+(209, 70, 9, 2),
+(210, 70, 10, 1),
+-- Order 71
+(211, 71, 1, 2),
+(212, 71, 2, 1),
+(213, 71, 3, 1),
+-- Order 72
+(214, 72, 4, 1),
+(215, 72, 5, 2),
+(216, 72, 6, 1),
+-- Order 73
+(217, 73, 7, 1),
+(218, 73, 8, 2),
+(219, 73, 9, 1),
+-- Order 74
+(220, 74, 10, 1),
+(221, 74, 1, 2),
+(222, 74, 2, 1),
+-- Order 75
+(223, 75, 3, 2),
+(224, 75, 4, 1),
+(225, 75, 5, 1),
+-- Order 76
+(226, 76, 6, 1),
+(227, 76, 7, 2),
+(228, 76, 8, 1),
+-- Order 77
+(229, 77, 9, 1),
+(230, 77, 10, 2),
+(231, 77, 1, 1),
+-- Order 78
+(232, 78, 2, 1),
+(233, 78, 3, 2),
+(234, 78, 4, 1),
+-- Order 79
+(235, 79, 5, 1),
+(236, 79, 6, 2),
+(237, 79, 7, 1),
+-- Order 80
+(238, 80, 8, 1),
+(239, 80, 9, 2),
+(240, 80, 10, 1),
+-- Order 81
+(241, 81, 1, 2),
+(242, 81, 2, 1),
+(243, 81, 3, 1),
+-- Order 82
+(244, 82, 4, 1),
+(245, 82, 5, 2),
+(246, 82, 6, 1),
+-- Order 83
+(247, 83, 7, 1),
+(248, 83, 8, 2),
+(249, 83, 9, 1),
+-- Order 84
+(250, 84, 10, 1),
+(251, 84, 1, 2),
+(252, 84, 2, 1),
+-- Order 85
+(253, 85, 3, 1),
+(254, 85, 4, 2),
+(255, 85, 5, 1),
+-- Order 86
+(256, 86, 6, 1),
+(257, 86, 7, 2),
+(258, 86, 8, 1),
+-- Order 87
+(259, 87, 9, 1),
+(260, 87, 10, 2),
+(261, 87, 1, 1),
+-- Order 88
+(262, 88, 2, 1),
+(263, 88, 3, 2),
+(264, 88, 4, 1),
+-- Order 89
+(265, 89, 5, 1),
+(266, 89, 6, 2),
+(267, 89, 7, 1),
+-- Order 90
+(268, 90, 8, 1),
+(269, 90, 9, 2),
+(270, 90, 10, 1);</sql><current_tab id="0"/></tab_sql></sqlb_project>

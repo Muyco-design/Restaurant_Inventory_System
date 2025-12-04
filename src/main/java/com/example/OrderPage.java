@@ -78,7 +78,7 @@ public class OrderPage {
         this.currentUser = user;
         this.currentRole = role;
 
-        boolean isWorker = "WORKER".equalsIgnoreCase(role);
+        boolean isWorker = "employee".equalsIgnoreCase(role);
 
         if (DashboardButton != null) {
             DashboardButton.setVisible(!isWorker);
