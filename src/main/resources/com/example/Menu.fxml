@@ -127,21 +127,21 @@
                      <children>
                         <Label fx:id="TotalRevenueDB" styleClass="analytics-value" text="0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="analytics-label" text="Total Revenue" />
-                        <Label styleClass="analytics-sub" text="0 In the last Month" />
+                        <Label styleClass="analytics-sub" text="In the last Month" />
                      </children>
                   </VBox>
                   <VBox prefHeight="116.0" prefWidth="268.0" spacing="10.0" styleClass="analytics-card">
                      <children>
                         <Label fx:id="TotalCostumersDB" styleClass="analytics-value" text="0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="analytics-label" text="Total Customers" />
-                        <Label styleClass="analytics-sub" text="0 In the last Month" />
+                        <Label styleClass="analytics-sub" text="In the last Month" />
                      </children>
                   </VBox>
                   <VBox prefHeight="144.0" prefWidth="218.0" spacing="10.0" styleClass="analytics-card">
                      <children>
                         <Label fx:id="TotalOrdersDB" styleClass="analytics-value" text="0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="analytics-label" text="Total Orders" />
-                        <Label prefHeight="17.0" prefWidth="109.0" styleClass="analytics-sub" text="0 In the last Month" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="analytics-label" text="Total Items" />
+                        <Label prefHeight="17.0" prefWidth="109.0" styleClass="analytics-sub" text="In the last Month" />
                      </children>
                   </VBox>
                </children>
