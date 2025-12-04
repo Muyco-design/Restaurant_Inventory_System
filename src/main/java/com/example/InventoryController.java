@@ -1,12 +1,13 @@
 package com.example;
 
 import javafx.animation.ScaleTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.VBox; //Something was here but got removed. Just place it back if you remember. - Jez
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -32,6 +33,7 @@ public class InventoryController {
     @FXML private ImageView Dashboardicon;
     @FXML private Button InventoryButton;
     @FXML private Button MenuButton;
+    @FXML private Button OrderButton;
     @FXML private AnchorPane Inventory;
     @FXML private TextField SearchBarMenu;
     @FXML private ImageView ProfilePicture;
@@ -44,7 +46,7 @@ public class InventoryController {
     @FXML private Button filterDinner;
 
     @FXML private ListView<HBox> inventoryList;
-    @FXML private VBox ItemContainer;
+    //Something was here but got removed. Just place it back if you remember. - Jez
 
     // ---- NEW ----
     private String selectedCategory = "All";          // Stores the active filter category
@@ -255,6 +257,22 @@ public class InventoryController {
         } catch (IOException e) { e.printStackTrace(); }
     }
 
+    @FXML
+    void handleOrderButton(ActionEvent event) { 
+           try {
+            Stage stage = (Stage) InventoryButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/OrderPage.fxml"));
+            Parent root = loader.load();
+            OrderPage controller = loader.getController();
+            controller.setCurrentUser(currentUser, currentRole);
+            stage.setScene(new Scene(root));
+        } catch (IOException e) { e.printStackTrace(); }
+
+    }
+
+
+
+    //Hover Animation for Buttons
      @FXML
     void handleButtonHover(MouseEvent event) {
     Node button = (Node) event.getSource(); // Get the button that fired the event

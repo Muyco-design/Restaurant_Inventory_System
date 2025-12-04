@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -58,6 +57,7 @@ public class FoodMenu {
     @FXML private Button InventoryButton;
     @FXML private Button MenuButton;
     @FXML private Button goBack;
+    @FXML private Button OrderButton;
 
     // Menu list / food cards
     @FXML private FlowPane MenuFlowPane;
@@ -101,6 +101,11 @@ public class FoodMenu {
     @FXML
     void handleInventoryButton(ActionEvent event) {
         loadPage("/com/example/Inventory.fxml", event);
+    }
+
+    @FXML
+    void handleOrderButton(ActionEvent event) {
+        loadPage("/com/example/OrderPage.fxml", event);
     }
 
 
