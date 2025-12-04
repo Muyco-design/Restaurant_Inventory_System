@@ -220,6 +220,7 @@ public class Menucontroller {
 
         Connection conn = DatabaseConnector.connect();
         return conn.createStatement().executeQuery(sql);
+        
     }
 
     private void loadTopAndLeastSelling() {

@@ -141,7 +141,7 @@
                      <children>
                         <Label fx:id="TotalOrdersDB" styleClass="analytics-value" text="0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="analytics-label" text="Total Items" />
-                        <Label prefHeight="17.0" prefWidth="109.0" styleClass="analytics-sub" text="In the last Month" />
+                        <Label prefHeight="17.0" prefWidth="109.0" styleClass="analytics-sub" text=" In the last Month" />
                      </children>
                   </VBox>
                </children>
