@@ -4,6 +4,8 @@ import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +20,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -140,11 +144,13 @@ public class FoodMenu {
         String name;
         double price;
         String imagePath; // path of the image
+        String description;
 
-        Food(String name, double price, String imagePath) {
+        Food(String name, double price, String imagePath, String description) {
             this.name = name;
             this.price = price;
             this.imagePath = imagePath;
+            this.description = description;
         }
     }
 
@@ -160,9 +166,10 @@ public class FoodMenu {
                 String name = rs.getString("meal_name");
                 double price = rs.getDouble("price");
                 String imagePath = "/Images/" + name + ".png";
+                String description = rs.getString("description");
 
                 System.out.println("Food: " + name + ", Price: " + price + ", ImagePath: " + imagePath);
-                foodList.add(new Food(name, price, imagePath));
+                foodList.add(new Food(name, price, imagePath, description));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -213,11 +220,21 @@ public class FoodMenu {
         imgView.setFitHeight(183);
 
         Label nameLabel = new Label(food.name);
-        nameLabel.setStyle("-fx-bold-weight: bold");
+        nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         Label priceLabel = new Label("₱" + food.price);
+        priceLabel.setStyle("-fx-font-weight: bold;");
 
-        card.getChildren().addAll(imgView, nameLabel, priceLabel);
+        Label descriptionLabel = new Label(food.description);
+        descriptionLabel.setWrapText(true);
+        descriptionLabel.setMaxWidth(220);
+
+        HBox priceBox = new HBox(priceLabel);
+        priceBox.setAlignment(Pos.BOTTOM_LEFT); // Align to bottom left
+
+        card.getChildren().addAll(imgView, nameLabel, descriptionLabel, priceBox);
         card.setOnMouseClicked(this::handleAddToOrder); // Attach event handler for ordering
+        card.setOnMouseEntered(event -> handleHoverEnter(card));
+        card.setOnMouseExited(event -> handleHoverExit(card));
         return card;
     }
 
@@ -282,7 +299,7 @@ public class FoodMenu {
 
 
     // ============================================================
-    // HOVER ANIMATION
+    // BUTTON HOVER ANIMATION
     // ============================================================
 
     @FXML
@@ -301,4 +318,28 @@ public class FoodMenu {
 
         st.play();
     }
+
+    // ============================================================
+    // CARD HOVER ANIMATIONS
+    // ============================================================
+
+    private void handleHoverEnter(VBox card) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(150), card);
+        card.setCursor(Cursor.HAND);
+        st.setToX(1.05); // Scale up by 5%
+        st.setToY(1.05); // Scale up by 5%
+        st.play();
+    }
+
+    private void handleHoverExit(VBox card) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(150), card);
+        card.setCursor(Cursor.DEFAULT);
+        st.setToX(1.0); // Scale back to original
+        st.setToY(1.0); // Scale back to original
+        st.play();
+    }
+
+
+
+
 }

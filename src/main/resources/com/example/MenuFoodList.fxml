@@ -244,15 +244,11 @@
             <Image url="@../../Images/1a73944c-e240-44a6-b10b-115e837f8548.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="354.0" layoutY="181.0" prefHeight="1062.0" prefWidth="794.0" style="-fx-background-color: transparent;">
+      <AnchorPane layoutX="354.0" layoutY="181.0" prefHeight="1420.0" prefWidth="794.0" style="-fx-background-color: transparent;">
          <children>
-            <ScrollPane fx:id="MenuListPane" layoutX="-45.0" prefHeight="941.0" prefWidth="802.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="-29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane fx:id="MenuListPane" fitToWidth="true" hbarPolicy="NEVER" layoutX="-45.0" pannable="true" prefHeight="1313.0" prefWidth="794.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="-11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <FlowPane fx:id="MenuFlowPane" hgap="20.0" prefHeight="681.0" prefWidth="802.0" style="-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;" vgap="20.0">
-                     <padding>
-                        <Insets bottom="20.0" top="20.0" />
-                     </padding>
-                  </FlowPane>
+                  <FlowPane fx:id="MenuFlowPane" focusTraversable="true" hgap="10.0" maxHeight="Infinity" prefHeight="1317.0" prefWidth="792.0" vgap="10.0" />
                </content>
             </ScrollPane>
          </children>
