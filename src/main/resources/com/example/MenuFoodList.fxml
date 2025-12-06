@@ -148,7 +148,7 @@
                   <Insets />
                </HBox.margin>
                <center>
-                  <Button fx:id="filterAll" mnemonicParsing="false" style="-fx-background-color: Transparent;" text="All" textFill="#2f4e1c" BorderPane.alignment="CENTER">
+                  <Button fx:id="filterAll" mnemonicParsing="false" onAction="#filterAllFoods" style="-fx-background-color: Transparent;" text="All" textFill="#2f4e1c" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -174,7 +174,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
                <center>
-                  <Button fx:id="filterBreakfast" mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Breakfast" BorderPane.alignment="CENTER" />
+                  <Button fx:id="filterBreakfast" mnemonicParsing="false" onAction="#filterBreakfastOptions" style="-fx-background-color: Transparent;" text="Breakfast" BorderPane.alignment="CENTER" />
                </center>
                <left>
                   <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -192,7 +192,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
                <center>
-                  <Button fx:id="filterLunch" mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Lunch" BorderPane.alignment="CENTER" />
+                  <Button fx:id="filterLunch" mnemonicParsing="false" onAction="#filterLunchOptions" style="-fx-background-color: Transparent;" text="Lunch" BorderPane.alignment="CENTER" />
                </center>
                <left>
                   <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -213,7 +213,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
                <center>
-                  <Button fx:id="filterDinner" mnemonicParsing="false" style="-fx-background-color: Transparent;" text="Dinner" BorderPane.alignment="CENTER" />
+                  <Button fx:id="filterDinner" mnemonicParsing="false" onAction="#filterDinnerOptions" style="-fx-background-color: Transparent;" text="Dinner" BorderPane.alignment="CENTER" />
                </center>
                <left>
                   <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
@@ -228,7 +228,7 @@
             </BorderPane>
          </children>
       </HBox>
-      <CheckBox fx:id="VegInvButton" alignment="CENTER" layoutX="1231.0" layoutY="134.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="172.0" style="-fx-background-color: white;" text="Vegetarian" textFill="#2f4e1c">
+      <CheckBox fx:id="VegInvButton" alignment="CENTER" layoutX="1231.0" layoutY="134.0" mnemonicParsing="false" onAction="#filterVegetarianOption" prefHeight="17.0" prefWidth="172.0" style="-fx-background-color: white;" text="Vegetarian" textFill="#2f4e1c">
          <font>
             <Font size="22.0" />
          </font>

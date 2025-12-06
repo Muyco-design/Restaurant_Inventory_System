@@ -90,7 +90,6 @@ public class FoodMenu {
 
     private double total = 0;
 
-
     // ============================================================
     // NAVIGATION
     // ============================================================
@@ -154,27 +153,47 @@ public class FoodMenu {
         }
     }
 
-    private ArrayList<Food> fetchFoodData() {
+    private ArrayList<Food> fetchFoodData(Integer categoryId, Integer isVegetarian) {
         ArrayList<Food> foodList = new ArrayList<>();
-        String sql = "SELECT * FROM meals"; // Update based on your SQL schema
+        StringBuilder sql = new StringBuilder("SELECT m.meal_name, m.price, m.description " +
+            "FROM meals m " +
+            "JOIN categories c ON m.category_id = c.category_id");
+        
+        if (categoryId != null || isVegetarian != null) {
+            sql.append(" WHERE ");
+            if (categoryId != null) {
+                sql.append("c.category_id = ?");
+            }
+            if (isVegetarian != null) {
+                if (categoryId != null) sql.append(" AND "); // Only add AND if category is present
+                sql.append("m.is_vegetarian = ?"); // Assuming `is_vegetarian` is the column in your meals table
+            }
+        }
 
         try (Connection conn = DatabaseConnector.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery()) {
+            PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
 
-            while (rs.next()) {
-                String name = rs.getString("meal_name");
-                double price = rs.getDouble("price");
-                String imagePath = "/Images/" + name + ".png";
-                String description = rs.getString("description");
+            int paramIndex = 1; // Parameter index for PreparedStatement
+            if (categoryId != null) {
+                pstmt.setInt(paramIndex++, categoryId);
+            }
+            if (isVegetarian != null) {
+                pstmt.setInt(paramIndex++, isVegetarian);
+            }
 
-                System.out.println("Food: " + name + ", Price: " + price + ", ImagePath: " + imagePath);
-                foodList.add(new Food(name, price, imagePath, description));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    String name = rs.getString("meal_name");
+                    double price = rs.getDouble("price");
+                    String imagePath = "/Images/" + name + ".png";
+                    String description = rs.getString("description");
+
+                    foodList.add(new Food(name, price, imagePath, description));
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
         return foodList;
     }
 
@@ -182,7 +201,7 @@ public class FoodMenu {
     // DISPLAY FOOD DATA
     // ============================================================
     private void displayFoodItems() { //FoodMenu.displayFoodItems
-        ArrayList<Food> foodList = fetchFoodData();
+        ArrayList<Food> foodList = fetchFoodData(null,null);
         
         for (Food food : foodList) {
             VBox card = createFoodCard(food);
@@ -339,7 +358,90 @@ public class FoodMenu {
         st.play();
     }
 
+    @FXML
+    void filterBreakfastOptions(ActionEvent event) {
+        MenuFlowPane.getChildren().clear();
+        ArrayList<Food> foodList = new ArrayList<>();
+        if (VegInvButton.isSelected()) {
+            Integer isVegetarian = 1;
+            foodList = fetchFoodData(1, isVegetarian);
+        } else {
+            Integer isVegetarian = null;
+            foodList = fetchFoodData(1, isVegetarian);
+        }
+        for (Food food : foodList) {
+            VBox card = createFoodCard(food);
+            MenuFlowPane.getChildren().add(card);
+        }
+    }
 
+    @FXML
+    void filterDinnerOptions(ActionEvent event) {
+        MenuFlowPane.getChildren().clear();
+        ArrayList<Food> foodList = new ArrayList<>();
+        if (VegInvButton.isSelected()) {
+            Integer isVegetarian = 1;
+            foodList = fetchFoodData(3, isVegetarian);
+        } else {
+            Integer isVegetarian = null;
+            foodList = fetchFoodData(3, isVegetarian);
+        } // Fetch dinner items
+        for (Food food : foodList) {
+            VBox card = createFoodCard(food);
+            MenuFlowPane.getChildren().add(card);
+        }
+    }
 
+    @FXML
+    void filterLunchOptions(ActionEvent event) {
+        MenuFlowPane.getChildren().clear();
+        ArrayList<Food> foodList = new ArrayList<>();
+        if (VegInvButton.isSelected()) {
+            Integer isVegetarian = 1;
+            foodList = fetchFoodData(2, isVegetarian);
+        } else {
+            Integer isVegetarian = null;
+            foodList = fetchFoodData(2, isVegetarian);
+        } // Fetch lunch items
+        for (Food food : foodList) {
+            VBox card = createFoodCard(food);
+            MenuFlowPane.getChildren().add(card);
+        }
+    }
+
+    @FXML
+    void filterAllFoods(ActionEvent event) {
+        MenuFlowPane.getChildren().clear();
+        ArrayList<Food> foodList = new ArrayList<>();
+        if (VegInvButton.isSelected()) {
+            Integer isVegetarian = 1;
+            foodList = fetchFoodData(null, isVegetarian);
+        } else {
+            Integer isVegetarian = null;
+            foodList = fetchFoodData(null, isVegetarian);
+        }
+        for (Food food : foodList) {
+            VBox card = createFoodCard(food);
+            MenuFlowPane.getChildren().add(card);
+        }
+    }
+
+    @FXML
+    void filterVegetarianOption(ActionEvent event) {
+        MenuFlowPane.getChildren().clear();
+        ArrayList<Food> foodList = new ArrayList<>();
+        if (VegInvButton.isSelected()) {
+            Integer isVegetarian = 1;
+            foodList = fetchFoodData(null, isVegetarian);
+        } else {
+            Integer isVegetarian = null;
+            foodList = fetchFoodData(null, isVegetarian);
+        }
+         
+        for (Food food : foodList) {
+            VBox card = createFoodCard(food);
+            MenuFlowPane.getChildren().add(card);
+    }
+    }
 
 }
