@@ -23,6 +23,9 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
+import java.sql.*;
+
 public class FoodMenu {
 
     // ============================================================
@@ -128,8 +131,96 @@ public class FoodMenu {
             e.printStackTrace();
         }
     }
+    // ============================================================
+    // FETCHING FOOD DATA
+    // ============================================================
 
+    // Food class to hold data (you can create it as a separate class)
+    class Food {
+        String name;
+        double price;
+        String imagePath; // path of the image
 
+        Food(String name, double price, String imagePath) {
+            this.name = name;
+            this.price = price;
+            this.imagePath = imagePath;
+        }
+    }
+
+    private ArrayList<Food> fetchFoodData() {
+        ArrayList<Food> foodList = new ArrayList<>();
+        String sql = "SELECT * FROM meals"; // Update based on your SQL schema
+
+        try (Connection conn = DatabaseConnector.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                String name = rs.getString("meal_name");
+                double price = rs.getDouble("price");
+                String imagePath = "/resources/Images/" + name + ".png";
+
+                System.out.println("Food: " + name + ", Price: " + price + ", ImagePath: " + imagePath);
+                foodList.add(new Food(name, price, imagePath));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return foodList;
+    }
+
+    // ============================================================
+    // DISPLAY FOOD DATA
+    // ============================================================
+    private void displayFoodItems() { //FoodMenu.displayFoodItems
+        ArrayList<Food> foodList = fetchFoodData();
+        
+        for (Food food : foodList) {
+            VBox card = createFoodCard(food);
+            MenuFlowPane.getChildren().add(card);
+        }
+    }
+
+    private VBox createFoodCard(Food food) {
+        VBox card = new VBox();
+        card.setStyle("-fx-padding: 10; -fx-margin: 10; -fx-background-color: #f2f2f2; -fx-border-radius: 8;");
+        card.setId("foodCard");
+
+        Image img = null;
+        try {
+            String resourcePath = food.imagePath;
+            System.out.println("Attempting to load image from: " + resourcePath);
+            img = new Image(getClass().getResourceAsStream(resourcePath));
+
+            if (img.isError()) {
+                System.err.println("Error loading image: " + resourcePath);
+                img = new Image(getClass().getResourceAsStream("/resources/Images/default.png"));
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.err.println("Failed to load image: " + food.imagePath + ", using default.");
+            img = new Image(getClass().getResourceAsStream("/resources/Images/default.png"));
+        }
+
+        ImageView imgView = new ImageView(img); // Load image
+        imgView.setFitWidth(240);
+        imgView.setFitHeight(280);
+
+        Label nameLabel = new Label(food.name);
+        Label priceLabel = new Label("₱" + food.price);
+
+        card.getChildren().addAll(imgView, nameLabel, priceLabel);
+        card.setOnMouseClicked(this::handleAddToOrder); // Attach event handler for ordering
+        return card;
+    }
+
+    @FXML
+    void initializeFoodMenu() {
+        displayFoodItems();
+    }
+        
     // ============================================================
     // ADD ITEM TO ORDER LIST
     // ============================================================

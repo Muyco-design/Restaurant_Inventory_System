@@ -131,6 +131,9 @@ public class OrderPage {
             Parent root = loader.load();
             FoodMenu controller = loader.getController();
             controller.setCurrentUser(currentUser, currentRole);
+
+            controller.initializeFoodMenu();
+
             stage.setScene(new Scene(root));
         } catch (IOException e) { e.printStackTrace(); }
 
