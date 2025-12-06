@@ -11,6 +11,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -21,7 +22,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-// SQL
+// SQL imports
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,10 +31,9 @@ import java.sql.Statement;
 public class Menucontroller {
 
     // ============================================================
-    // FAKE DATE TO MAKE NOV 2024 DATA "RECENT"
+    // FAKE DATE FOR LAST MONTH LOGIC
     // ============================================================
     private static final String FAKE_NOW = "2024-12-15";
-
 
     // ============================================================
     // USER INFO
@@ -77,38 +77,28 @@ public class Menucontroller {
     @FXML private Label LSE1, LSE2, LSE3;
     @FXML private Label LSO1, LSO2, LSO3;
 
-    @FXML private Button LastMonth;
     @FXML private Label LeastSellingOne, LeastSellingTwo, LeastSellingThree;
-
-    @FXML private Button MenuButton;
-    @FXML private HBox MenuHBox;
-
-    @FXML private ImageView ProfilePicture;
-
-    @FXML private TextField SearchBarMenu;
 
     @FXML private Label TSE1, TSE2, TSE3;
     @FXML private Label TSO1, TSO2, TSO3;
 
     @FXML private Label TopSellingOne, TopSellingTwo, TopSellingThree;
 
-    @FXML private Label TotalCostumersDB;
-    @FXML private Label TotalOrdersDB;
-    @FXML private Label TotalRevenueDB;
+    @FXML private TextField SearchBarMenu;
 
-    @FXML private Label UserRole;
-    @FXML private Label Username;
+    @FXML private Label TotalCostumersDB, TotalOrdersDB, TotalRevenueDB;
 
-    @FXML private Button Week1, Week2, Week3, Week4;
+    @FXML private Label UserRole, Username;
 
-    @FXML private Button goBack;
-    @FXML private HBox logOffBox;
+    @FXML private Button MenuButton, Week1, Week2, Week3, Week4, LastMonth, goBack;
+    @FXML private HBox MenuHBox, logOffBox;
 
+    // Out of Stock
     @FXML private Label NameOOS1, NameOOS2, NameOOS3;
-
     @FXML private Label QtyOOS1, QtyOOS2, QtyOOS3;
-
     @FXML private ImageView ImageOOS1, ImageOOS2, ImageOOS3;
+
+
     // ============================================================
     // LOCAL VARIABLES
     // ============================================================
@@ -123,7 +113,7 @@ public class Menucontroller {
     @FXML
     private void initialize() {
 
-        LastMonthInternal(); // BarChart default
+        LastMonthInternal(); // default bar chart
 
         FadeTransition fade = new FadeTransition(Duration.seconds(1.2), BarChart);
         fade.setFromValue(0);
@@ -134,21 +124,32 @@ public class Menucontroller {
         updateDashboard();
 
         loadTopAndLeastSelling();
+        loadOutOfStockMeals();   // <---- NEW
+    }
+
+
+    // ============================================================
+    // IMAGE LOADER (Dynamic by meal_id)
+    // ============================================================
+    private Image loadMealImage(int mealId) {
+        try {
+            String path = "/Images/" + mealId + ".png";
+            return new Image(getClass().getResourceAsStream(path));
+        } catch (Exception e) {
+            return new Image(getClass().getResourceAsStream("/Images/default.png"));
+        }
     }
 
 
     // ============================================================
     // SQL — DASHBOARD TOTALS
     // ============================================================
-
     private int fetchTotalCustomers() {
         String sql = "SELECT COUNT(DISTINCT order_id) AS total FROM orders;";
-
         try (Connection conn = DatabaseConnector.connect();
              ResultSet rs = conn.createStatement().executeQuery(sql)) {
             return rs.getInt("total");
         } catch (Exception e) { e.printStackTrace(); }
-
         return 0;
     }
 
@@ -163,15 +164,13 @@ public class Menucontroller {
 
     private double fetchTotalRevenue() {
         String sql =
-            "SELECT IFNULL(SUM(oi.quantity * m.price), 0) AS total " +
-            "FROM order_item oi " +
-            "JOIN meals m ON oi.meal_id = m.meal_id;";
-
+                "SELECT IFNULL(SUM(oi.quantity * m.price), 0) AS total " +
+                "FROM order_item oi " +
+                "JOIN meals m ON oi.meal_id = m.meal_id;";
         try (Connection conn = DatabaseConnector.connect();
              ResultSet rs = conn.createStatement().executeQuery(sql)) {
             return rs.getDouble("total");
         } catch (Exception e) { e.printStackTrace(); }
-
         return 0.0;
     }
 
@@ -194,67 +193,59 @@ public class Menucontroller {
 
     private ResultSet fetchTopSelling() throws SQLException {
         String sql =
-            "SELECT m.meal_name, " +
-            "SUM(oi.quantity) AS total_orders, " +
+            "SELECT m.meal_name, SUM(oi.quantity) AS total_orders, " +
             "SUM(oi.quantity * m.price) AS earned " +
             "FROM order_item oi " +
             "JOIN meals m ON oi.meal_id = m.meal_id " +
             "JOIN orders o ON oi.order_id = o.order_id " +
             "WHERE date(o.order_date) >= date('" + FAKE_NOW + "', '-1 month') " +
             "GROUP BY oi.meal_id " +
-            "ORDER BY total_orders DESC " +
-            "LIMIT 3;";
+            "ORDER BY total_orders DESC LIMIT 3;";
 
-        Connection conn = DatabaseConnector.connect();
-        return conn.createStatement().executeQuery(sql);
+        return DatabaseConnector.connect().createStatement().executeQuery(sql);
     }
 
     private ResultSet fetchLeastSelling() throws SQLException {
         String sql =
-            "SELECT m.meal_name, " +
-            "SUM(oi.quantity) AS total_orders, " +
+            "SELECT m.meal_name, SUM(oi.quantity) AS total_orders, " +
             "SUM(oi.quantity * m.price) AS earned " +
             "FROM order_item oi " +
             "JOIN meals m ON oi.meal_id = m.meal_id " +
             "JOIN orders o ON oi.order_id = o.order_id " +
             "WHERE date(o.order_date) >= date('" + FAKE_NOW + "', '-1 month') " +
             "GROUP BY oi.meal_id " +
-            "ORDER BY total_orders ASC " +
-            "LIMIT 3;";
+            "ORDER BY total_orders ASC LIMIT 3;";
 
-        Connection conn = DatabaseConnector.connect();
-        return conn.createStatement().executeQuery(sql);
-        
+        return DatabaseConnector.connect().createStatement().executeQuery(sql);
     }
 
     private void loadTopAndLeastSelling() {
         try {
             // TOP
             ResultSet top = fetchTopSelling();
-
-            Label[] topNames = {TopSellingOne, TopSellingTwo, TopSellingThree};
-            Label[] topQty = {TSO1, TSO2, TSO3};
-            Label[] topEarn = {TSE1, TSE2, TSE3};
+            Label[] names = {TopSellingOne, TopSellingTwo, TopSellingThree};
+            Label[] qty   = {TSO1, TSO2, TSO3};
+            Label[] earn  = {TSE1, TSE2, TSE3};
 
             int i = 0;
             while (top.next() && i < 3) {
-                topNames[i].setText(top.getString("meal_name"));
-                topQty[i].setText(top.getInt("total_orders") + " orders");
-                topEarn[i].setText("+₱" + top.getDouble("earned") + " Earned");
+                names[i].setText(top.getString("meal_name"));
+                qty[i].setText(top.getInt("total_orders") + " orders");
+                earn[i].setText("+₱" + top.getDouble("earned") + " Earned");
                 i++;
             }
             while (i < 3) {
-                topNames[i].setText("No data");
-                topQty[i].setText("0 orders");
-                topEarn[i].setText("+₱0 Earned");
+                names[i].setText("No data");
+                qty[i].setText("0 orders");
+                earn[i].setText("+₱0 Earned");
                 i++;
             }
 
             // LEAST
             ResultSet least = fetchLeastSelling();
             Label[] leastNames = {LeastSellingOne, LeastSellingTwo, LeastSellingThree};
-            Label[] leastQty = {LSO1, LSO2, LSO3};
-            Label[] leastEarn = {LSE1, LSE2, LSE3};
+            Label[] leastQty   = {LSO1, LSO2, LSO3};
+            Label[] leastEarn  = {LSE1, LSE2, LSE3};
 
             i = 0;
             while (least.next() && i < 3) {
@@ -271,6 +262,47 @@ public class Menucontroller {
             }
 
         } catch (Exception e) { e.printStackTrace(); }
+    }
+
+
+    // ============================================================
+    // SQL — OUT OF STOCK
+    // ============================================================
+    private void loadOutOfStockMeals() {
+
+        String sql =
+            "SELECT meal_id, meal_name, amount_stock " +
+            "FROM meals " +
+            "WHERE amount_stock = 0 " +
+            "ORDER BY meal_name LIMIT 3;";
+
+        try (Connection conn = DatabaseConnector.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            Label[] names = {NameOOS1, NameOOS2, NameOOS3};
+            Label[] qty   = {QtyOOS1, QtyOOS2, QtyOOS3};
+            ImageView[] images = {ImageOOS1, ImageOOS2, ImageOOS3};
+
+            int i = 0;
+            while (rs.next() && i < 3) {
+                int mealId = rs.getInt("meal_id");
+                names[i].setText(rs.getString("meal_name"));
+                qty[i].setText("Quantity: " + rs.getInt("amount_stock"));
+                images[i].setImage(loadMealImage(mealId));
+                i++;
+            }
+
+            while (i < 3) { // fill empty slots
+                names[i].setText("food Name");
+                qty[i].setText("Quantity: 0");
+                images[i].setImage(loadMealImage(-1)); // default image
+                i++;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -298,25 +330,29 @@ public class Menucontroller {
     // ============================================================
 
     private void LastMonthInternal() {
-        int[] v = {823, 456, 1245, 1245};
-        String[] l = {"Week 1", "Week 2", "Week 3", "Week 4"};
+        int[] v = {823,456,1245,1245};
+        String[] l = {"Week 1","Week 2","Week 3","Week 4"};
         updateBarChart(v, "In the Last Month", l);
     }
+
     private void Week1Internal() {
         int[] v = {823,0,0,0,0,0,0};
         String[] l = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
         updateBarChart(v, "Week 1", l);
     }
+
     private void Week2Internal() {
         int[] v = {0,456,0,0,0,0,0};
         String[] l = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
         updateBarChart(v, "Week 2", l);
     }
+
     private void Week3Internal() {
         int[] v = {0,0,1245,0,0,0,0};
         String[] l = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
         updateBarChart(v, "Week 3", l);
     }
+
     private void Week4Internal() {
         int[] v = {0,0,0,1245,0,0,0};
         String[] l = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
@@ -331,21 +367,19 @@ public class Menucontroller {
 
 
     // ============================================================
-    // SEARCH
+    // SEARCH BAR
     // ============================================================
-
     @FXML
     void handleSearch(ActionEvent event) {
         String text = SearchBarMenu.getText();
         if (!text.isEmpty())
-            System.out.println("Searching for: " + text);
+            System.out.println("Searching: " + text);
     }
 
 
     // ============================================================
     // NAVIGATION
     // ============================================================
-
     @FXML
     void handleDashboard(ActionEvent event) {
         try {
@@ -357,7 +391,7 @@ public class Menucontroller {
             controller.setCurrentUser(currentUser, currentRole);
 
             stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @FXML
@@ -372,7 +406,7 @@ public class Menucontroller {
             controller.initializeFoodMenu();
             
             stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @FXML
@@ -386,7 +420,7 @@ public class Menucontroller {
             controller.setCurrentUser(currentUser, currentRole);
 
             stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @FXML
@@ -395,14 +429,13 @@ public class Menucontroller {
             Stage stage = (Stage) goBack.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/LoginPage.fxml"));
             stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
 
     // ============================================================
     // HOVER ANIMATION
     // ============================================================
-
     @FXML
     void handleButtonHover(MouseEvent event) {
 
