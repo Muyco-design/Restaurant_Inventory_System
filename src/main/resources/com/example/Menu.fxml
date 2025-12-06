@@ -322,17 +322,17 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label styleClass="food-name" text="food Name" GridPane.columnIndex="1">
+                  <Label fx:id="NameOOS1" styleClass="food-name" text="food Name" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label prefHeight="19.0" prefWidth="109.0" styleClass="food-orders" text="Quantity: 0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="QtyOOS1" prefHeight="19.0" prefWidth="109.0" styleClass="food-orders" text="Quantity: 0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <ImageView fitHeight="38.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" styleClass="image-circle" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <ImageView fx:id="ImageOOS1" fitHeight="38.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" styleClass="image-circle" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <image>
                         <Image url="@../../Images/Extra-Creamy-Halo-Halo.png" />
                      </image>
@@ -350,17 +350,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label styleClass="food-name" text="food Name">
+                  <Label fx:id="NameOOS2" styleClass="food-name" text="food Name">
                      <GridPane.margin>
                         <Insets left="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label prefHeight="19.0" prefWidth="115.0" styleClass="food-orders" text="Quantity: 0" GridPane.rowIndex="2">
+                  <Label fx:id="QtyOOS2" prefHeight="19.0" prefWidth="115.0" styleClass="food-orders" text="Quantity: 0" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <ImageView fitHeight="38.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" styleClass="image-circle" GridPane.rowIndex="1">
+                  <ImageView fx:id="ImageOOS2" fitHeight="38.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" styleClass="image-circle" GridPane.rowIndex="1">
                      <image>
                         <Image url="@../../Images/Extra-Creamy-Halo-Halo.png" />
                      </image>
@@ -378,17 +378,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="19.0" prefWidth="127.0" styleClass="food-orders" text="Quantity: 0" GridPane.rowIndex="2">
+                  <Label fx:id="QtyOOS3" prefHeight="19.0" prefWidth="127.0" styleClass="food-orders" text="Quantity: 0" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label styleClass="food-name" text="food Name">
+                  <Label fx:id="NameOOS3" styleClass="food-name" text="food Name">
                      <GridPane.margin>
                         <Insets left="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <ImageView fitHeight="38.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" styleClass="image-circle" GridPane.rowIndex="1">
+                  <ImageView fx:id="ImageOOS3" fitHeight="38.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" styleClass="image-circle" GridPane.rowIndex="1">
                      <image>
                         <Image url="@../../Images/Extra-Creamy-Halo-Halo.png" />
                      </image>
