@@ -159,7 +159,7 @@ public class FoodMenu {
             while (rs.next()) {
                 String name = rs.getString("meal_name");
                 double price = rs.getDouble("price");
-                String imagePath = "/resources/Images/" + name + ".png";
+                String imagePath = "/Images/" + name + ".png";
 
                 System.out.println("Food: " + name + ", Price: " + price + ", ImagePath: " + imagePath);
                 foodList.add(new Food(name, price, imagePath));
@@ -185,8 +185,12 @@ public class FoodMenu {
 
     private VBox createFoodCard(Food food) {
         VBox card = new VBox();
-        card.setStyle("-fx-padding: 10; -fx-margin: 10; -fx-background-color: #f2f2f2; -fx-border-radius: 8;");
+        card.setStyle("-fx-background-color: #ffffffff; -fx-padding: 10; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #E0E0E0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);");
+        // ("-fx-padding: 10,10,10,10; -fx-margin: 10,0,0,10; -fx-background-color: #ffffffff; -fx-border-radius: 8;");
         card.setId("foodCard");
+        card.setPrefWidth(240);
+        card.setPrefHeight(280);
+
 
         Image img = null;
         try {
@@ -205,10 +209,11 @@ public class FoodMenu {
         }
 
         ImageView imgView = new ImageView(img); // Load image
-        imgView.setFitWidth(240);
-        imgView.setFitHeight(280);
+        imgView.setFitWidth(220);
+        imgView.setFitHeight(183);
 
         Label nameLabel = new Label(food.name);
+        nameLabel.setStyle("-fx-bold-weight: bold");
         Label priceLabel = new Label("₱" + food.price);
 
         card.getChildren().addAll(imgView, nameLabel, priceLabel);
