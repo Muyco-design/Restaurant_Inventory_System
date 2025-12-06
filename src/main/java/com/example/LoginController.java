@@ -80,6 +80,7 @@ public class LoginController {
                                 Menucontroller controller = loader.getController();
                                 controller.setCurrentUser(user, DB_role);
 
+
                                 stage.setScene(new Scene(root));
 
                                 break;
@@ -94,6 +95,8 @@ public class LoginController {
 
                                 FoodMenu controller = loader.getController();
                                 controller.setCurrentUser(user, DB_role);
+
+                                controller.initializeFoodMenu();
 
                                 stage.setScene(new Scene(root));
 
