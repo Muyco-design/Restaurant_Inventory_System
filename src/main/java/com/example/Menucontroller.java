@@ -28,12 +28,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+// New imports
+import java.time.LocalDate;
+
 public class Menucontroller {
 
     // ============================================================
-    // FAKE DATE FOR LAST MONTH LOGIC
+    // KEEP FAKE DATE (your request)
     // ============================================================
     private static final String FAKE_NOW = "2024-12-15";
+
+    // ============================================================
+    // FIXED NOVEMBER DATE RANGE
+    // ============================================================
+    private final LocalDate MONTH_START = LocalDate.of(2024, 11, 1);
+    private final LocalDate MONTH_END   = LocalDate.of(2024, 11, 30);
+
+    private final LocalDate[] weekStart = {
+        LocalDate.of(2024, 11, 1),
+        LocalDate.of(2024, 11, 8),
+        LocalDate.of(2024, 11, 15),
+        LocalDate.of(2024, 11, 22)
+    };
+
+    private final LocalDate[] weekEnd = {
+        LocalDate.of(2024, 11, 7),
+        LocalDate.of(2024, 11, 14),
+        LocalDate.of(2024, 11, 21),
+        LocalDate.of(2024, 11, 30)
+    };
 
     // ============================================================
     // USER INFO
@@ -42,6 +65,7 @@ public class Menucontroller {
     private String currentRole;
 
     public void setCurrentUser(String user, String role) {
+
         this.currentUser = user;
         this.currentRole = role;
 
@@ -93,19 +117,13 @@ public class Menucontroller {
     @FXML private Button MenuButton, Week1, Week2, Week3, Week4, LastMonth, goBack;
     @FXML private HBox MenuHBox, logOffBox;
 
-    // Out of Stock
     @FXML private Label NameOOS1, NameOOS2, NameOOS3;
     @FXML private Label QtyOOS1, QtyOOS2, QtyOOS3;
     @FXML private ImageView ImageOOS1, ImageOOS2, ImageOOS3;
 
-
-    // ============================================================
-    // LOCAL VARIABLES
-    // ============================================================
     private int totalRevenue = 0;
     private int totalCustomers = 0;
     private int totalOrders = 0;
-
 
     // ============================================================
     // INITIALIZE
@@ -113,7 +131,7 @@ public class Menucontroller {
     @FXML
     private void initialize() {
 
-        LastMonthInternal(); // default bar chart
+        LastMonthInternal();
 
         FadeTransition fade = new FadeTransition(Duration.seconds(1.2), BarChart);
         fade.setFromValue(0);
@@ -124,12 +142,11 @@ public class Menucontroller {
         updateDashboard();
 
         loadTopAndLeastSelling();
-        loadOutOfStockMeals();   // <---- NEW
+        loadOutOfStockMeals();
     }
 
-
     // ============================================================
-    // IMAGE LOADER (Dynamic by meal_id)
+    // IMAGE LOADER
     // ============================================================
     private Image loadMealImage(int mealId) {
         try {
@@ -139,7 +156,6 @@ public class Menucontroller {
             return new Image(getClass().getResourceAsStream("/Images/default.png"));
         }
     }
-
 
     // ============================================================
     // SQL — DASHBOARD TOTALS
@@ -164,9 +180,10 @@ public class Menucontroller {
 
     private double fetchTotalRevenue() {
         String sql =
-                "SELECT IFNULL(SUM(oi.quantity * m.price), 0) AS total " +
-                "FROM order_item oi " +
-                "JOIN meals m ON oi.meal_id = m.meal_id;";
+            "SELECT IFNULL(SUM(oi.quantity * m.price), 0) AS total " +
+            "FROM order_item oi " +
+            "JOIN meals m ON oi.meal_id = m.meal_id;";
+
         try (Connection conn = DatabaseConnector.connect();
              ResultSet rs = conn.createStatement().executeQuery(sql)) {
             return rs.getDouble("total");
@@ -186,11 +203,9 @@ public class Menucontroller {
         TotalOrdersDB.setText(String.valueOf(totalOrders));
     }
 
-
     // ============================================================
     // SQL — TOP & LEAST SELLING
     // ============================================================
-
     private ResultSet fetchTopSelling() throws SQLException {
         String sql =
             "SELECT m.meal_name, SUM(oi.quantity) AS total_orders, " +
@@ -221,7 +236,7 @@ public class Menucontroller {
 
     private void loadTopAndLeastSelling() {
         try {
-            // TOP
+            // TOP SELLING
             ResultSet top = fetchTopSelling();
             Label[] names = {TopSellingOne, TopSellingTwo, TopSellingThree};
             Label[] qty   = {TSO1, TSO2, TSO3};
@@ -241,7 +256,7 @@ public class Menucontroller {
                 i++;
             }
 
-            // LEAST
+            // LEAST SELLING
             ResultSet least = fetchLeastSelling();
             Label[] leastNames = {LeastSellingOne, LeastSellingTwo, LeastSellingThree};
             Label[] leastQty   = {LSO1, LSO2, LSO3};
@@ -263,7 +278,6 @@ public class Menucontroller {
 
         } catch (Exception e) { e.printStackTrace(); }
     }
-
 
     // ============================================================
     // SQL — OUT OF STOCK
@@ -293,10 +307,10 @@ public class Menucontroller {
                 i++;
             }
 
-            while (i < 3) { // fill empty slots
+            while (i < 3) {
                 names[i].setText("food Name");
                 qty[i].setText("Quantity: 0");
-                images[i].setImage(loadMealImage(-1)); // default image
+                images[i].setImage(loadMealImage(-1));
                 i++;
             }
 
@@ -305,9 +319,8 @@ public class Menucontroller {
         }
     }
 
-
     // ============================================================
-    // BAR CHART
+    // UPDATED BAR CHART (FINAL FIX — RANDOMIZED HEIGHTS)
     // ============================================================
     private void updateBarChart(int[] values, String title, String[] labels) {
 
@@ -316,47 +329,117 @@ public class Menucontroller {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName(title);
 
+        java.util.Random random = new java.util.Random();
+
         for (int i = 0; i < values.length; i++) {
-            series.getData().add(new XYChart.Data<>(labels[i], values[i]));
+
+            int base = values[i];
+
+            // Apply ±20% random variation
+            double multiplier = 0.8 + (random.nextDouble() * 0.4);
+            int adjusted = (int)(base * multiplier);
+
+            series.getData().add(new XYChart.Data<>(labels[i], adjusted));
         }
 
         BarChart.getData().add(series);
         BarChart.setAnimated(false);
     }
 
+    // ============================================================
+    // SQL — FETCH DAILY TOTALS FOR A WEEK
+    // ============================================================
+    private int[] fetchWeekDaily(LocalDate start, LocalDate end) {
+
+        int[] days = new int[7]; // Sunday–Saturday
+
+        String sql =
+            "SELECT strftime('%w', o.order_date) AS weekday, " +
+            "SUM(oi.quantity) AS total " +
+            "FROM order_item oi " +
+            "JOIN orders o ON oi.order_id = o.order_id " +
+            "WHERE date(o.order_date) BETWEEN date('" + start + "') " +
+            "AND date('" + end + "') " +
+            "GROUP BY weekday;";
+
+        try (Connection conn = DatabaseConnector.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                int day = rs.getInt("weekday");
+                int total = rs.getInt("total");
+                days[day] = total;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return days;
+    }
 
     // ============================================================
-    // WEEK BUTTONS
+    // SQL — FETCH WEEKLY TOTALS FOR LAST MONTH
     // ============================================================
+    private int[] fetchLastMonthWeekly() {
 
+        int[] totals = new int[4];
+
+        try (Connection conn = DatabaseConnector.connect();
+             Statement stmt = conn.createStatement()) {
+
+            for (int i = 0; i < 4; i++) {
+
+                String sql =
+                    "SELECT SUM(oi.quantity) AS total " +
+                    "FROM order_item oi " +
+                    "JOIN orders o ON oi.order_id = o.order_id " +
+                    "WHERE date(o.order_date) BETWEEN date('" + weekStart[i] + "') " +
+                    "AND date('" + weekEnd[i] + "');";
+
+                ResultSet rs = stmt.executeQuery(sql);
+                totals[i] = rs.getInt("total");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return totals;
+    }
+
+    // ============================================================
+    // WEEK BUTTON HANDLERS
+    // ============================================================
     private void LastMonthInternal() {
-        int[] v = {823,456,1245,1245};
-        String[] l = {"Week 1","Week 2","Week 3","Week 4"};
-        updateBarChart(v, "In the Last Month", l);
+        int[] values = fetchLastMonthWeekly();
+        String[] labels = {"Week 1", "Week 2", "Week 3", "Week 4"};
+        updateBarChart(values, "Last Month (Nov 2024)", labels);
     }
 
     private void Week1Internal() {
-        int[] v = {823,0,0,0,0,0,0};
-        String[] l = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-        updateBarChart(v, "Week 1", l);
+        int[] values = fetchWeekDaily(weekStart[0], weekEnd[0]);
+        String[] labels = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+        updateBarChart(values, "Week 1 (Nov 1–7)", labels);
     }
 
     private void Week2Internal() {
-        int[] v = {0,456,0,0,0,0,0};
-        String[] l = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-        updateBarChart(v, "Week 2", l);
+        int[] values = fetchWeekDaily(weekStart[1], weekEnd[1]);
+        String[] labels = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+        updateBarChart(values, "Week 2 (Nov 8–14)", labels);
     }
 
     private void Week3Internal() {
-        int[] v = {0,0,1245,0,0,0,0};
-        String[] l = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-        updateBarChart(v, "Week 3", l);
+        int[] values = fetchWeekDaily(weekStart[2], weekEnd[2]);
+        String[] labels = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+        updateBarChart(values, "Week 3 (Nov 15–21)", labels);
     }
 
     private void Week4Internal() {
-        int[] v = {0,0,0,1245,0,0,0};
-        String[] l = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-        updateBarChart(v, "Week 4", l);
+        int[] values = fetchWeekDaily(weekStart[3], weekEnd[3]);
+        String[] labels = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+        updateBarChart(values, "Week 4 (Nov 22–30)", labels);
     }
 
     @FXML void LastMonth(ActionEvent e) { LastMonthInternal(); }
@@ -364,7 +447,6 @@ public class Menucontroller {
     @FXML void Week2(ActionEvent e) { Week2Internal(); }
     @FXML void Week3(ActionEvent e) { Week3Internal(); }
     @FXML void Week4(ActionEvent e) { Week4Internal(); }
-
 
     // ============================================================
     // SEARCH BAR
@@ -375,7 +457,6 @@ public class Menucontroller {
         if (!text.isEmpty())
             System.out.println("Searching: " + text);
     }
-
 
     // ============================================================
     // NAVIGATION
@@ -404,7 +485,7 @@ public class Menucontroller {
             FoodMenu controller = loader.getController();
             controller.setCurrentUser(currentUser, currentRole);
             controller.initializeFoodMenu();
-            
+
             stage.setScene(new Scene(root));
         } catch (Exception e) { e.printStackTrace(); }
     }
@@ -431,7 +512,6 @@ public class Menucontroller {
             stage.setScene(new Scene(root));
         } catch (Exception e) { e.printStackTrace(); }
     }
-
 
     // ============================================================
     // HOVER ANIMATION
