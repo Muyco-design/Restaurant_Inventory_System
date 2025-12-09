@@ -1,28 +1,26 @@
 package com.example;
 
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox; //Something was here but got removed. Just place it back if you remember. - Jez
-import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.ListView;
-import javafx.scene.control.CheckBox;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InventoryController {
 
@@ -34,28 +32,44 @@ public class InventoryController {
     @FXML private Button InventoryButton;
     @FXML private Button MenuButton;
     @FXML private Button OrderButton;
-    @FXML private AnchorPane Inventory;
     @FXML private TextField SearchBarMenu;
-    @FXML private ImageView ProfilePicture;
-    @FXML private Button goBack;
 
     @FXML private CheckBox VegInvButton;
+
     @FXML private Button filterAll;
     @FXML private Button filterBreakfast;
     @FXML private Button filterLunch;
     @FXML private Button filterDinner;
 
     @FXML private ListView<HBox> inventoryList;
-    //Something was here but got removed. Just place it back if you remember. - Jez
 
-    // ---- NEW ----
-    private String selectedCategory = "All";          // Stores the active filter category
-    private List<InventoryItem> masterList = new ArrayList<>();  // Full item list for filtering
+    private String selectedCategory = "All";
 
+    private final List<InventoryItem> masterList = new ArrayList<>();
 
-    // ======================================================
-    // USER INITIALIZATION
-    // ======================================================
+    private static class InventoryItem {
+        int mealId;
+        String name;
+        String desc;
+        int stock;
+        double price;
+        String category;
+        boolean vegetarian;
+        String imagePath;
+
+        InventoryItem(int mealId, String name, String desc, int stock,
+                      double price, String category, boolean vegetarian, String imagePath) {
+            this.mealId = mealId;
+            this.name = name;
+            this.desc = desc;
+            this.stock = stock;
+            this.price = price;
+            this.category = category;
+            this.vegetarian = vegetarian;
+            this.imagePath = imagePath;
+        }
+    }
+
     public void setCurrentUser(String user, String role) {
         this.currentUser = user;
         this.currentRole = role;
@@ -64,120 +78,99 @@ public class InventoryController {
 
         DashboardButton.setVisible(!isWorker);
         DashboardButton.setManaged(!isWorker);
+
         Dashboardicon.setVisible(!isWorker);
         Dashboardicon.setManaged(!isWorker);
     }
 
-
-    // ======================================================
+    // --------------------
     // INITIALIZE
-    // ======================================================
+    // --------------------
     @FXML
     public void initialize() {
+        loadMealsFromDatabase();
+        applyFilters();
 
-        loadPlaceholderData();  // loads into masterList
-        applyFilters();         // populates ListView
-
-        // live search
-        SearchBarMenu.textProperty().addListener((obs, oldValue, newValue) -> applyFilters());
+        SearchBarMenu.textProperty().addListener((a, b, c) -> applyFilters());
+        VegInvButton.selectedProperty().addListener((a, b, c) -> applyFilters());
     }
 
-    
-    // ======================================================
-    // DATA STRUCTURE (internal)
-    // ======================================================
-    private static class InventoryItem {
-        String name;
-        String desc;
-        int stock;
-        double price;
-        String imagePath;
-        String category;
-        boolean vegetarian;
+    // --------------------
+    // LOAD DATABASE
+    // --------------------
+    private void loadMealsFromDatabase() {
+        masterList.clear();
 
-        InventoryItem(String name, String desc, int stock, double price,
-                      String imagePath, String category, boolean vegetarian) {
-            this.name = name;
-            this.desc = desc;
-            this.stock = stock;
-            this.price = price;
-            this.imagePath = imagePath;
-            this.category = category;
-            this.vegetarian = vegetarian;
+        String sql = "SELECT * FROM meals";
+
+        try (Connection conn = DatabaseConnector.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+
+                int id = rs.getInt("meal_id");
+                String name = rs.getString("meal_name");
+                String desc = rs.getString("description");
+                int stock = rs.getInt("amount_stock");
+                double price = rs.getDouble("price");
+                int catId = rs.getInt("category_id");
+                boolean veg = rs.getInt("is_vegetarian") == 1;
+
+                String category = switch (catId) {
+                    case 1 -> "Breakfast";
+                    case 2 -> "Lunch";
+                    case 3 -> "Dinner";
+                    default -> "Other";
+                };
+
+                String imagePath = "/Images/" + name + ".png";
+
+                masterList.add(new InventoryItem(id, name, desc, stock, price, category, veg, imagePath));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-
-    // ======================================================
-    // LOAD PLACEHOLDER ITEMS
-    // ======================================================
-    private void loadPlaceholderData() {
-        masterList.clear();
-
-        masterList.add(new InventoryItem(
-                "Tapsilog", "Beef tapa with garlic rice",
-                150, 95, "/Images/Filipino Beef Tapa for an Easy and Hearty Breakfast.png",
-                "Breakfast", false
-        ));
-
-        masterList.add(new InventoryItem(
-                "Chicken Adobo", "Soy-vinegar chicken stew",
-                180, 120, "/Images/Filipino Beef Tapa for an Easy and Hearty Breakfast.png",
-                "Lunch", false
-        ));
-
-        masterList.add(new InventoryItem(
-                "Champorado", "Chocolate rice porridge",
-                200, 50, "/Images/Filipino Beef Tapa for an Easy and Hearty Breakfast.png",
-                "Breakfast", true
-        ));
-    }
-
-
-    // ======================================================
-    // APPLY FILTERS (ALL / CATEGORY / VEGETARIAN / SEARCH)
-    // ======================================================
+    // --------------------
+    // FILTER + SEARCH
+    // --------------------
     private void applyFilters() {
 
         inventoryList.getItems().clear();
 
-        String search = SearchBarMenu.getText().toLowerCase();
+        String search = SearchBarMenu.getText() == null ? "" : SearchBarMenu.getText().toLowerCase();
         boolean vegOnly = VegInvButton.isSelected();
 
         for (InventoryItem item : masterList) {
 
-            // category filter
             if (!selectedCategory.equals("All") &&
-                !item.category.equalsIgnoreCase(selectedCategory)) {
-                continue;
-            }
+                !item.category.equalsIgnoreCase(selectedCategory)) continue;
 
-            // vegetarian filter
-            if (vegOnly && !item.vegetarian) {
-                continue;
-            }
+            if (vegOnly && !item.vegetarian) continue;
 
-            // search filter
             if (!item.name.toLowerCase().contains(search) &&
-                !item.desc.toLowerCase().contains(search)) {
-                continue;
-            }
+                !item.desc.toLowerCase().contains(search)) continue;
 
             addRow(item);
         }
     }
 
-
-    // ======================================================
-    // ADD ROW TO LISTVIEW
-    // ======================================================
+    // --------------------
+    // ADD ROW
+    // --------------------
     private void addRow(InventoryItem item) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ItemRowInventoryPage.fxml"));
             HBox row = loader.load();
 
             ItemRowController controller = loader.getController();
-            controller.setData(item.name, item.desc, item.stock, item.price, item.imagePath);
+            row.setUserData(controller);
+
+            controller.setParentController(this);
+            controller.setData(item.mealId, item.name, item.desc, item.stock, item.price, item.imagePath);
 
             inventoryList.getItems().add(row);
 
@@ -186,110 +179,92 @@ public class InventoryController {
         }
     }
 
+    // --------------------
+    // LIVE UPDATE
+    // --------------------
+    public void refreshSingleRow(int mealId, int newStock) {
+        Platform.runLater(() -> {
+            for (HBox row : inventoryList.getItems()) {
 
-    // ======================================================
-    // FILTER BUTTON HANDLERS
-    // ======================================================
+                ItemRowController ctrl = (ItemRowController) row.getUserData();
+                if (ctrl != null && ctrl.getMealId() == mealId) {
+
+                    ctrl.updateDisplayedStock();
+
+                    for (InventoryItem it : masterList)
+                        if (it.mealId == mealId)
+                            it.stock = newStock;
+
+                    return;
+                }
+            }
+        });
+    }
+
+    // --------------------
+    // CATEGORY FILTER BUTTONS
+    // --------------------
+    @FXML private void filterAll() { selectedCategory = "All"; applyFilters(); }
+    @FXML private void filterBreakfast() { selectedCategory = "Breakfast"; applyFilters(); }
+    @FXML private void filterLunch() { selectedCategory = "Lunch"; applyFilters(); }
+    @FXML private void filterDinner() { selectedCategory = "Dinner"; applyFilters(); }
+
+    // --------------------
+    // NAVIGATION BUTTONS
+    // --------------------
     @FXML
-    private void filterAll() {
-        selectedCategory = "All";
-        applyFilters();
+    private void handleDashboard(ActionEvent event) {
+        loadPage("/com/example/MenuDashboard.fxml", event);
     }
 
     @FXML
-    private void filterBreakfast() {
-        selectedCategory = "Breakfast";
-        applyFilters();
+    private void handleMenuButton(ActionEvent event) {
+        loadPage("/com/example/MenuFoodList.fxml", event);
     }
 
     @FXML
-    private void filterLunch() {
-        selectedCategory = "Lunch";
-        applyFilters();
+    private void handleOrderButton(ActionEvent event) {
+        loadPage("/com/example/OrderPage.fxml", event);
     }
 
     @FXML
-    private void filterDinner() {
-        selectedCategory = "Dinner";
-        applyFilters();
+    private void goBack(ActionEvent event) {
+        loadPage("/com/example/LoginPage.fxml", event);
     }
 
-    @FXML
-    private void filterVegetarian() {
-        applyFilters();
-    }
-
-
-    // ======================================================
-    // NAVIGATION
-    // ======================================================
-    @FXML
-    private void handleDashboard() {
+    // --------------------
+    // UNIVERSAL NAVIGATION LOADER
+    // --------------------
+    private void loadPage(String fxml, ActionEvent event) {
         try {
-            Stage stage = (Stage) DashboardButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/Menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
-            Menucontroller controller = loader.getController();
-            controller.setCurrentUser(currentUser, currentRole);
+
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    // --------------------
+    // HOVER ANIMATIONS
+    // --------------------
     @FXML
-    private void handleMenuButton() {
-        try {
-            Stage stage = (Stage) InventoryButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/MenuFoodList.fxml"));
-            Parent root = loader.load();
-            FoodMenu controller = loader.getController();
-            controller.setCurrentUser(currentUser, currentRole);
-            controller.initializeFoodMenu();
-
-            stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
-    }
-
-    @FXML
-    private void goBack() {
-        try {
-            Stage stage = (Stage) goBack.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/LoginPage.fxml"));
-            Parent root = loader.load();
-            stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
-    }
-
-    @FXML
-    void handleOrderButton(ActionEvent event) { 
-           try {
-            Stage stage = (Stage) InventoryButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/OrderPage.fxml"));
-            Parent root = loader.load();
-            OrderPage controller = loader.getController();
-            controller.setCurrentUser(currentUser, currentRole);
-            stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
-
-    }
-
-
-
-    //Hover Animation for Buttons
-     @FXML
     void handleButtonHover(MouseEvent event) {
-    Node button = (Node) event.getSource(); // Get the button that fired the event
-    ScaleTransition st = new ScaleTransition(Duration.millis(200), button);
-    
-    if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
-        button.setStyle("-fx-cursor: hand;");
-        st.setToX(1.1); // Scale X to 110%
-        st.setToY(1.1); // Scale Y to 110%
-    } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
-        st.setToX(1.0); // Scale back to original X
-        st.setToY(1.0); // Scale back to original Y
-    }
-    
+        Node node = (Node) event.getSource();
+        ScaleTransition st = new ScaleTransition(Duration.millis(200), node);
+
+        if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
+            node.setStyle("-fx-cursor: hand;");
+            st.setToX(1.1);
+            st.setToY(1.1);
+        } else {
+            st.setToX(1.0);
+            st.setToY(1.0);
+        }
+
         st.play();
     }
-    
 }
